@@ -1,0 +1,26 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Status</th>
+      <th scope="col">Links</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @customers.each do |customer| %>
+      <% if customer.registrations.count > 0 %><tr class="table-success"><% else %><tr class="table-warning"><% end %>
+          <td><%= customer.name %></td>
+          <td><%= customer.address %></td>
+          <td>
+              <% if customer.registrations.count > 0 %>
+                Registered
+              <% else %>
+                Not Registered
+              <% end %>
+          </td>
+          <td><%= link_to "Show", customer_path(customer) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,3 +1,23 @@
-<h1>Customer Lookup</h1>
-<p>Scan customer's barcode or enter in the last four digits of their primary phone number</p>
-
+<div class="row justify-content-center">
+  <div class="col-8">
+    <h1 class="display-1">Annual Meeting Check-In</h1>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<div class="row justify-content-center align-items-center">
+  <div class="col-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Scan customer's bar code or search by the customer's street number.</h5><br>
+        <%= form_tag(customers_path, method: :get) do %>
+          <%= text_field_tag(:search, params[:search], class: "form-control form-control-lg") %>
+        <% end %>
+      </div>
+    </div>
+  </div
+</div>
+<br>
+<br>

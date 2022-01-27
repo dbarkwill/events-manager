@@ -3,11 +3,12 @@
 <h1>Customers</h1>
 
 <div id="customers">
-  <% @customers.each do |customer| %>
-    <%= render customer %>
-    <p>
-      <%= link_to "Show this customer", customer %>
-    </p>
+  <% if @customers.count > 1 %>
+    <%= render "customertable" %>
+  <% else %>
+    <% @customers.each do |customer| %>
+      <%= render customer %>
+    <% end %>
   <% end %>
 </div>
 

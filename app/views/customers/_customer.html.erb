@@ -1,22 +1,30 @@
-<div id="<%= dom_id customer %>">
-  <p>
-    <strong>Customer number:</strong>
-    <%= customer.customer_number %>
-  </p>
-
-  <p>
-    <strong>Barcode:</strong>
-    <%= customer.barcode %>
-  </p>
-
-  <p>
-    <strong>Name:</strong>
-    <%= customer.name %>
-  </p>
-
-  <p>
-    <strong>Phone number:</strong>
-    <%= customer.phone_number %>
-  </p>
-
+<div class="col-4" id="<%= dom_id customer %>">
+    <div class="card p-3">
+      <h5 class="card-title"><%= customer.name %></h5>
+      <p class="card-text">
+          <b>Address:</b> <%= customer.address %><br>
+          <b>Phone Number:</b> <%= customer.phone_number %><br>
+          <b>Customer Number:</b> <%= customer. customer_number %></br>
+          <% if customer.registrations.count >= 1 %>
+            <b>Dinner Count:</b> <%= customer.registrations.first.dinner_count %>
+            <div class="alert alert-success" role="alert">Registered</div>
+            <div class="d-grid gap-2">
+              <% if customer.check_ins.count >= 1 %>
+                <fieldset disabled>
+                  <button type="button" class="btn btn-secondary btn-lg">Already Checked In</button>
+                </fieldset>
+              <% else %>
+                <%= form_tag(registrations_path, method: :post) do %>
+                  <%= hidden_field(:customer, :customer_id) %>
+                  <%= hidden_field(:customer.registrations.first, :registration_id) %>
+                  <%= submit_tag(value="Check-In", class:"btn btn-primary btn-lg") %>
+                <% end %>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="alert alert-warning" role="alert">Not Registered</div>
+            <button type="button" class="btn btn-secondary btn-lg">Register Now</button>
+          <% end %>
+      </p>
+    </div>
 </div>
