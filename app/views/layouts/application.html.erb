@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EventsManager</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <div class="container">
+      <%= yield %>
+    </div>
+    <nav class="navbar fixed-bottom navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Annual Meeting Check-In App v1.0</a>
+      </div>
+    </nav>
+  </body>
+</html>
