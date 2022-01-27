@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   resources :check_ins
   resources :employees
   resources :registrations
-  resources :customers
+  resources :customers do
+    resources :registrations
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

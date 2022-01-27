@@ -25,7 +25,7 @@ class CheckInsController < ApplicationController
 
     respond_to do |format|
       if @check_in.save
-        format.html { redirect_to check_in_url(@check_in), notice: "Check in was successfully created." }
+        format.html { redirect_to :controller => 'customers', :action => 'lookup', notice: "Customer has been checked in." }
         format.json { render :show, status: :created, location: @check_in }
       else
         format.html { render :new, status: :unprocessable_entity }

@@ -12,7 +12,9 @@ class RegistrationsController < ApplicationController
 
   # GET /registrations/new
   def new
-    @registration = Registration.new
+    @customer = Customer.find params[:customer_id]
+    @registration = Registration.new(:customer=>@customer)
+
   end
 
   # GET /registrations/1/edit
@@ -21,15 +23,19 @@ class RegistrationsController < ApplicationController
 
   # POST /registrations or /registrations.json
   def create
-    @registration = Registration.new(registration_params)
-
-    respond_to do |format|
-      if @registration.save
-        format.html { redirect_to registration_url(@registration), notice: "Registration was successfully created." }
-        format.json { render :show, status: :created, location: @registration }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @registration.errors, status: :unprocessable_entity }
+    if Registration.where(customer_id: registration_params[:customer_id]).count > 0
+        redirect_to :controller => 'customers', :action => 'lookup', notice: "Customer is already registered."
+    else
+      @registration = Registration.new(registration_params)
+      @customer = Customer.find registration_params[:customer_id]
+      respond_to do |format|
+        if @registration.save
+          format.html { redirect_to customer_url(@customer), notice: "Registration was successfully created." }
+          format.json { render :show, status: :created, location: @registration }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @registration.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

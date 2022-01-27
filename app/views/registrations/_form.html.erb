@@ -12,17 +12,12 @@
   <% end %>
 
   <div>
-    <%= form.label :customer_id, style: "display: block" %>
-    <%= form.number_field :customer_id %>
-  </div>
-
-  <div>
-    <%= form.label :date, style: "display: block" %>
-    <%= form.datetime_field :date %>
+    <%= @customer.name %>
   </div>
 
   <div>
     <%= form.label :dinner_count, style: "display: block" %>
+    <%= form.hidden_field :customer_id, value: @customer.id %>
     <%= form.number_field :dinner_count %>
   </div>
 
