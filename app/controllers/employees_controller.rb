@@ -19,6 +19,17 @@ class EmployeesController < ApplicationController
   def edit
   end
 
+
+  # POST /login
+  def login
+    @employee = Employee.find params[:PIN]
+    if @employees
+      redirect_to controller: customers, action: lookup
+    else
+      redirect_to controller: static_pages, action: home
+    end
+  end
+
   # POST /employees or /employees.json
   def create
     @employee = Employee.new(employee_params)

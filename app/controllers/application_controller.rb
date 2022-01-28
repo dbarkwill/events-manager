@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
-  def emp_login
-    render html: "Employee PIN Login Placeholder"
+  helper_method :current_employee
+
+  def current_employee
+    @current_employee ||= Employee.find(session[:employee_id]) if session[:employee_id]
   end
 end

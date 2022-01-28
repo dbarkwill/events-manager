@@ -17,6 +17,13 @@
     <nav class="navbar fixed-bottom navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Annual Meeting Check-In App v1.0</a>
+        <% if current_employee %>
+          <div class="d-flex">
+            <span class="navbar-text">Logged in as <%= current_employee.first_name %>
+              <%= link_to 'Sign Out', logout_path, method: :delete %>
+            </span>
+          </div>
+        <% end %>
       </div>
     </nav>
   </body>
