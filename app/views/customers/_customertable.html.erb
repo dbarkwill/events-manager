@@ -9,11 +9,11 @@
   </thead>
   <tbody>
     <% @customers.each do |customer| %>
-      <% if customer.registrations.count > 0 %><tr class="table-success"><% else %><tr class="table-warning"><% end %>
+      <% if customer.registered %><tr class="table-success"><% else %><tr class="table-warning"><% end %>
           <td><%= customer.name %></td>
           <td><%= customer.address %></td>
           <td>
-              <% if customer.registrations.count > 0 %>
+              <% if customer.registered %>
                 Registered
               <% else %>
                 Not Registered

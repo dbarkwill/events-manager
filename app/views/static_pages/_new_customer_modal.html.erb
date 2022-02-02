@@ -1,0 +1,41 @@
+<div class="modal fade" tabindex="-1" id="newcustomer">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create Customer</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_with(model: customer) do |form| %>
+
+          <div class="mb-3">
+            <label class="form-label">Customer Number:</label>
+            <%= form.text_field :customer_number, class:"form-control" %>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Full Name:</label>
+            <%= form.text_field :name, class:"form-control" %>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Phone Number:</label>
+            <%= form.text_field :phone_number, class:"form-control" %>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Mailing Address:</label>
+            <%= form.text_field :address, class:"form-control" %>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Physical Address:</label>
+            <%= form.text_field :address, class:"form-control" %>
+          </div>
+      </div>
+      <div class="modal-footer">
+          <%= submit_tag "Create Customer", class:"btn btn-primary" %>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

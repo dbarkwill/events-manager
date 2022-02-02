@@ -1,0 +1,33 @@
+<div class="modal fade" tabindex="-1" id="newemployee">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create Employee</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_with(model: employee) do |form| %>
+
+          <div class="mb-3">
+            <label class="form-label">First Name:</label>
+            <%= form.text_field :first_name, class:"form-control" %>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Last Name:</label>
+            <%= form.text_field :last_name, class:"form-control" %>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">PIN:</label>
+            <%= form.text_field :PIN, class:"form-control" %>
+          </div>
+      </div>
+      <div class="modal-footer">
+          <%= submit_tag "Create Employee", class:"btn btn-primary" %>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

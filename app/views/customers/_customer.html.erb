@@ -2,29 +2,50 @@
     <div class="card p-3">
       <h5 class="card-title"><%= customer.name %></h5>
       <p class="card-text">
+          <% if customer.registered %>
+            <span class="badge badge-pill bg-success">Registered</span>
+            <% if customer.checked_in %>
+              <span class="badge bg-secondary">Checked-In</span>
+            <% end %>
+          <% else %>
+            <span class="badge bg-secondary">Not Registered</span>
+          <% end %>
+          <% if customer.voted %>
+            <span class="badge bg-info text-dark">Voted</span>
+          <% else %>
+            <span class="badge bg-secondary">Not Voted</span>
+          <% end %>
+          <br>
+          <br>
           <b>Address:</b> <%= customer.address %><br>
+          <b>Physical Address:</b> <%= customer.phys_address %></br>
           <b>Phone Number:</b> <%= customer.phone_number %><br>
           <b>Customer Number:</b> <%= customer. customer_number %></br>
-          <% if customer.registrations.count >= 1 %>
-            <b>Dinner Count:</b> <%= customer.registrations.first.dinner_count %>
-            <div class="alert alert-success" role="alert">Registered</div>
-            <div class="d-grid gap-2">
-              <% if customer.check_ins.count >= 1 %>
-                <fieldset disabled>
-                  <button type="button" class="btn btn-secondary btn-lg">Already Checked In</button>
-                </fieldset>
-              <% else %>
-                <%= form_with(model: @check_in) do |form| %>
-                  <%= form.hidden_field :customer_id, value: customer.id %>
-                  <%= form.hidden_field :registration_id, value: customer.registrations.first.id %>
-                  <%= form.hidden_field :employee_id, value: current_employee.id %>
-                  <%= form.submit "Check-In", class:"btn btn-primary btn-lg" %>
-                <% end %>
+          <% if customer.registered %>
+            <b>Dinner Count:</b> <%= customer.dinner_count %>
+              <% if !customer.checked_in %>
+                <div class="d-grid gap-2">
+                  <hr>
+                  <%= form_with(model: customer) do |form| %>
+                    <%= form.hidden_field :checked_in, value: 1 %>
+                    <%= form.submit "Check-In", class:"btn btn-primary btn-lg" %>
+                  <% end %>
+                </div>
+              <% end %>
+          <% else %>
+            <hr>
+            <div class="form-group">
+              <%= form_with(model: customer) do |form| %>
+                <%= form.hidden_field :registered, value: 1 %>
+                <%= form.hidden_field :registered_at_event, value: 1 %>
+                <div class="form-group">
+                  <label>Dinner Count:</label>
+                  <%= form.number_field :dinner_count, class:"form-control" %>
+                </div>
+                <br>
+                <%= form.submit "Register Now", class:"btn btn-secondary btn-lg" %>
               <% end %>
             </div>
-          <% else %>
-            <div class="alert alert-warning" role="alert">Not Registered</div>
-            <%= link_to "Register Now", new_customer_registration_path(customer), class: "btn btn-secondary btn-lg" %>
           <% end %>
       </p>
     </div>

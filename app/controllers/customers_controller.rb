@@ -1,5 +1,6 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: %i[ show edit update destroy ]
+  require 'csv'
 
   # GET /customers or /customers.json
   def index
@@ -9,9 +10,6 @@ class CustomersController < ApplicationController
 
   # GET /customers/1 or /customers/1.json
   def show
-    if @customer.registrations.count > 0
-      @check_in = CheckIn.new
-    end
   end
 
   # GET /customers/new
@@ -21,6 +19,21 @@ class CustomersController < ApplicationController
 
   # GET /customers/1/edit
   def edit
+  end
+
+  # POST /customers/import
+  def import
+    Customer.import(params[:file])
+    redirect_to root_url, notice: "Customers have been imported"
+  end
+
+  # GET /customers/export_attendance
+  def export_attendance
+      @customers = Customer.filter_by_checked_in(true)
+      respond_to do |format|
+        format.html
+        format.csv { send_data @customers.to_csv, filename: "customers_checked_in-#{Date.today}.csv" }
+      end
   end
 
   # POST /customers or /customers.json
@@ -69,6 +82,6 @@ class CustomersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def customer_params
-      params.require(:customer).permit(:customer_number, :barcode, :name, :phone_number, :search, :address)
+      params.require(:customer).permit(:customer_number, :name, :phone_number, :search, :address, :file, :checked_in, :registered, :registered_at_event, :dinner_count, :phys_address)
     end
 end
