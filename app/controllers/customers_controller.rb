@@ -20,6 +20,14 @@ class CustomersController < ApplicationController
   def edit
   end
 
+  def lookup
+
+      if turbo_frame_request?
+        @customers = Customer.search(params[:search])
+        render partial: "customers", locals: { customers: @customers }
+      end
+  end
+
   # POST /customers/import
   def import
     Customer.import(params[:file])
@@ -52,13 +60,20 @@ class CustomersController < ApplicationController
 
   # PATCH/PUT /customers/1 or /customers/1.json
   def update
-    respond_to do |format|
+    if turbo_frame_request?
       if @customer.update(customer_params)
-        format.html { redirect_to customer_url(@customer), notice: "Customer was successfully updated." }
-        format.json { render :show, status: :ok, location: @customer }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @customer.errors, status: :unprocessable_entity }
+        @customers = @customer
+        render partial: "customers", locals: { customers: @customers }
+      end
+    else
+      respond_to do |format|
+        if @customer.update(customer_params)
+          format.html { redirect_to customer_url(@customer), notice: "Customer was successfully updated." }
+          format.json { render :show, status: :ok, location: @customer }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @customer.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

@@ -1,4 +1,4 @@
-<div class="col-4" id="<%= dom_id customer %>">
+<div class="col-4 gy-2" id="<%= dom_id customer %>">
     <div class="card p-3">
       <h5 class="card-title"><%= customer.name %></h5>
       <p class="card-text">
@@ -18,15 +18,15 @@
           <br>
           <br>
           <b>Address:</b> <%= customer.address %><br>
-          <b>Physical Address:</b> <%= customer.phys_address %></br>
+          <b>Physical Address:</b> <%= customer.phys_address %><br>
           <b>Phone Number:</b> <%= customer.phone_number %><br>
-          <b>Customer Number:</b> <%= customer. customer_number %></br>
+          <b>Customer Number:</b> <%= customer. customer_number %><br>
           <% if customer.registered %>
             <b>Dinner Count:</b> <%= customer.dinner_count %>
               <% if !customer.checked_in %>
                 <div class="d-grid gap-2">
                   <hr>
-                  <%= form_with(model: customer) do |form| %>
+                  <%= form_with(model: customer, data: { turbo_frame: "customers" }) do |form| %>
                     <%= form.hidden_field :checked_in, value: 1 %>
                     <%= form.submit "Check-In", class:"btn btn-primary btn-lg" %>
                   <% end %>
@@ -35,7 +35,7 @@
           <% else %>
             <hr>
             <div class="form-group">
-              <%= form_with(model: customer) do |form| %>
+              <%= form_with(model: customer, data: { turbo_frame: "customers" }) do |form| %>
                 <%= form.hidden_field :registered, value: 1 %>
                 <%= form.hidden_field :registered_at_event, value: 1 %>
                 <div class="form-group">

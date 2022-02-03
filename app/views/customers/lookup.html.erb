@@ -7,17 +7,24 @@
 <br>
 <br>
 <br>
-<div class="row justify-content-center align-items-center">
-  <div class="col-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Scan customer's bar code or search by the customer's street number.</h5><br>
-        <%= form_tag(customers_path, method: :get) do %>
-          <%= text_field_tag(:search, params[:search], class: "form-control form-control-lg") %>
-        <% end %>
+<div class="clearfix">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Scan customer's bar code or search by the customer's street number.</h5><br>
+          <%= form_with url: "/lookup", method: :get, data: { turbo_frame: "customers" } do |form| %>
+            <%= form.text_field :search, class: "form-control form-control-lg" %>
+          <% end %>
+        </div>
       </div>
-    </div>
-  </div
+    </div
+  </div>
+</div>
+<div class="row">
+  <div class="col-6">
+    <br><br>
+  </div>
 </div>
 <br>
-<br>
+<%= render "customers", customers: @customers %>
