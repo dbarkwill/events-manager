@@ -1,5 +1,5 @@
 <div class="modal fade" tabindex="-1" id="recentcheckins">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Recent Check-Ins</h5>
@@ -24,6 +24,7 @@
                   <td><%= customer.address %></td>
                   <td><%= customer.dinner_count %></td>
                   <td><% if customer.registered_at_event %>Yes<% else %>No<% end %></td>
+                  <td><%= link_to "View", customer_path(customer), class:"badge bg-info" %>
               </tr>
             <% end %>
           </tbody>

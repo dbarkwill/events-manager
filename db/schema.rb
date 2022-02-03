@@ -10,22 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_02_204302) do
-
-  create_table "check_ins", force: :cascade do |t|
-    t.integer "customer_id"
-    t.integer "employee_id"
-    t.integer "registration_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+ActiveRecord::Schema.define(version: 2022_01_26_194544) do
 
   create_table "customers", force: :cascade do |t|
     t.string "customer_number"
     t.string "name"
     t.string "phone_number"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "address"
     t.boolean "registered"
     t.integer "dinner_count"
@@ -33,21 +23,15 @@ ActiveRecord::Schema.define(version: 2022_02_02_204302) do
     t.boolean "registered_at_event"
     t.boolean "voted"
     t.string "phys_address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "employees", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.integer "PIN"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.boolean "IsAdmin"
-  end
-
-  create_table "registrations", force: :cascade do |t|
-    t.integer "customer_id"
-    t.datetime "date", precision: 6
-    t.integer "dinner_count"
+    t.boolean "is_admin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

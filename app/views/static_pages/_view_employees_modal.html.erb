@@ -1,8 +1,8 @@
 <div class="modal fade" tabindex="-1" id="viewemployees">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Recent Check-Ins</h5>
+        <h5 class="modal-title">Employees</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -22,7 +22,7 @@
                   <td><%= employee.first_name %></td>
                   <td><%= employee.last_name %></td>
                   <td><%= employee.PIN %></td>
-                  <td><% if employee.IsAdmin %><span class="badge bg-success">Yes</span><% end %></td>
+                  <td><% if employee.is_admin %><span class="badge bg-success">Yes</span><% end %></td>
                   <td><%= link_to "View", employee_path(employee), class: "badge bg-info" %></td>
               </tr>
             <% end %>

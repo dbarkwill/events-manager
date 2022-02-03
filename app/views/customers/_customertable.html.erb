@@ -1,25 +1,25 @@
 <table class="table">
   <thead>
     <tr>
+      <th scope="col">Customer Number</th>
       <th scope="col">Name</th>
       <th scope="col">Address</th>
-      <th scope="col">Status</th>
+      <th scope="col">Physical Address</th>
+      <th scope="col" colspan="3">Status</th>
       <th scope="col">Links</th>
     </tr>
   </thead>
   <tbody>
     <% @customers.each do |customer| %>
       <% if customer.registered %><tr class="table-success"><% else %><tr class="table-warning"><% end %>
+          <td><%= customer.customer_number %></td>
           <td><%= customer.name %></td>
           <td><%= customer.address %></td>
-          <td>
-              <% if customer.registered %>
-                Registered
-              <% else %>
-                Not Registered
-              <% end %>
-          </td>
-          <td><%= link_to "Show", customer_path(customer) %></td>
+          <td><%= customer.phys_address %></td>
+          <td><% if customer.registered %><span class="badge bg-success">Registered</span><% else %><span class="badge bg-secondary">Not Registered</span><% end %></td>
+          <td><% if customer.voted %><span class="badge bg-success">Voted</span><% else %><span class="badge bg-secondary">Not Voted</span><% end %></td>
+          <td><% if customer.checked_in && customer.registered %> <span class="badge bg-success">Checked In</span><% end %></td>
+          <td><%= link_to "View", customer_path(customer), class:"badge bg-info" %></td>
       </tr>
     <% end %>
   </tbody>

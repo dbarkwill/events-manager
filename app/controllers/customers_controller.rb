@@ -5,7 +5,6 @@ class CustomersController < ApplicationController
   # GET /customers or /customers.json
   def index
     @customers = Customer.search(params[:search])
-    @check_in = CheckIn.new
   end
 
   # GET /customers/1 or /customers/1.json

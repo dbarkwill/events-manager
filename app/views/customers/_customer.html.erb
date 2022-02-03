@@ -3,9 +3,9 @@
       <h5 class="card-title"><%= customer.name %></h5>
       <p class="card-text">
           <% if customer.registered %>
-            <span class="badge badge-pill bg-success">Registered</span>
+            <span class="badge bg-success">Registered</span>
             <% if customer.checked_in %>
-              <span class="badge bg-secondary">Checked-In</span>
+              <span class="badge bg-success">Checked-In</span>
             <% end %>
           <% else %>
             <span class="badge bg-secondary">Not Registered</span>
@@ -40,7 +40,7 @@
                 <%= form.hidden_field :registered_at_event, value: 1 %>
                 <div class="form-group">
                   <label>Dinner Count:</label>
-                  <%= form.number_field :dinner_count, class:"form-control" %>
+                  <%= form.number_field :dinner_count, class:"form-control", :required => true %>
                 </div>
                 <br>
                 <%= form.submit "Register Now", class:"btn btn-secondary btn-lg" %>
