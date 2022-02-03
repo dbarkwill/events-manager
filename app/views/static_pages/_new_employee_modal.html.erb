@@ -22,6 +22,10 @@
             <label class="form-label">PIN:</label>
             <%= form.text_field :PIN, class:"form-control" %>
           </div>
+          <div class="mb-3">
+            <%= form.check_box :is_admin, class:"form-check-input" %>
+            <label class="form-check-label">Admin</label>
+          </div>
       </div>
       <div class="modal-footer">
           <%= submit_tag "Create Employee", class:"btn btn-primary" %>

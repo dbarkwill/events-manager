@@ -1,10 +1,10 @@
-<h1>Editing customer</h1>
+<h1>Edit Customer</h1>
+<br>
 
 <%= render "form", customer: @customer %>
 
 <br>
-
 <div>
-  <%= link_to "Show this customer", @customer %> |
-  <%= link_to "Back to customers", customers_path %>
+  <%= link_to "Cancel Editing", @customer, class:"btn btn-secondary" %>
+  <%= link_to "View All Customers", customers_path, class:"btn btn-secondary" %>
 </div>

@@ -21,7 +21,6 @@ class CustomersController < ApplicationController
   end
 
   def lookup
-
       if turbo_frame_request?
         @customers = Customer.search(params[:search])
         render partial: "customers", locals: { customers: @customers }
@@ -30,7 +29,11 @@ class CustomersController < ApplicationController
 
   # POST /customers/import
   def import
-    Customer.import(params[:file])
+    customers = []
+    CSV.foreach(params[:file], headers: true) do |row|
+      customers << row.to_h
+    end
+    Customer.import(customers)
     redirect_to root_url, notice: "Customers have been imported"
   end
 
@@ -63,6 +66,7 @@ class CustomersController < ApplicationController
     if turbo_frame_request?
       if @customer.update(customer_params)
         @customers = @customer
+        flash.now[:notice] ="test"
         render partial: "customers", locals: { customers: @customers }
       end
     else
@@ -83,7 +87,7 @@ class CustomersController < ApplicationController
     @customer.destroy
 
     respond_to do |format|
-      format.html { redirect_to customers_url, notice: "Customer was successfully destroyed." }
+      format.html { redirect_to customers_url, notice: "Customer was successfully deleted." }
       format.json { head :no_content }
     end
   end

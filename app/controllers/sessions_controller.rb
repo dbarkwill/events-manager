@@ -15,6 +15,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:employee_id] = nil
-    redirect_to :controller => 'static_pages', :action => 'home'
+    redirect_to root_url
   end
 end

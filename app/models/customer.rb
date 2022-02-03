@@ -7,7 +7,7 @@ class Customer < ApplicationRecord
     if search
       customers = Customer.where("customer_number = ? OR address LIKE '#{search} %' OR phys_address LIKE '#{search} %'", search)
     else
-      customers = Customer.all
+      customers = Customer.all.limit(200)
     end
     return customers
   end
@@ -22,9 +22,5 @@ class Customer < ApplicationRecord
     end
   end
 
-  def self.import(file)
-    CSV.foreach(file.path, headers: true) do |row|
-      Customer.create! row.to_hash
-    end
-  end
+
 end

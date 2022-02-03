@@ -1,7 +1,7 @@
 <%= render @customer %>
 <br>
 <div>
-  <% if current_employee %>
+  <% if current_admin %>
     <%= button_to "Delete Customer", @customer, method: :delete, class:"btn btn-danger" %>
   <% end %>
 </div>

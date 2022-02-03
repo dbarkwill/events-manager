@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'static_pages#home'
+  root 'customers#lookup'
 
   get 'lookup', to: 'customers#lookup'
   get 'customers/export_attendance', to: 'customers#export_attendance'
@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
 
+  get 'login', to: 'static_pages#home'
   get 'logout', to: 'sessions#destroy'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

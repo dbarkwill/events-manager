@@ -24,27 +24,34 @@
           <% if customer.registered %>
             <b>Dinner Count:</b> <%= customer.dinner_count %>
               <% if !customer.checked_in %>
-                <div class="d-grid gap-2">
-                  <hr>
-                  <%= form_with(model: customer, data: { turbo_frame: "customers" }) do |form| %>
-                    <%= form.hidden_field :checked_in, value: 1 %>
-                    <%= form.submit "Check-In", class:"btn btn-primary btn-lg" %>
-                  <% end %>
-                </div>
+                <hr>
+                <%= form_with(model: customer, data: { turbo_frame: "customers" }) do |form| %>
+                  <%= form.hidden_field :checked_in, value: 1 %>
+                  <div class="d-grid gap-2">
+                    <%= form.submit "Check-In", class:"btn btn-primary" %>
+                  </div>
+                <% end %>
               <% end %>
           <% else %>
             <hr>
-            <div class="form-group">
-              <%= form_with(model: customer, data: { turbo_frame: "customers" }) do |form| %>
-                <%= form.hidden_field :registered, value: 1 %>
-                <%= form.hidden_field :registered_at_event, value: 1 %>
-                <div class="form-group">
-                  <label>Dinner Count:</label>
-                  <%= form.number_field :dinner_count, class:"form-control", :required => true %>
-                </div>
-                <br>
-                <%= form.submit "Register Now", class:"btn btn-secondary btn-lg" %>
-              <% end %>
+            <%= form_with(model: customer, data: { turbo_frame: "customers" }) do |form| %>
+              <%= form.hidden_field :registered, value: 1 %>
+              <%= form.hidden_field :registered_at_event, value: 1 %>
+              <%= form.hidden_field :checked_in, value: 1 %>
+              <div class="form-group">
+                <label>Dinner Count:</label>
+                <%= form.number_field :dinner_count, class:"form-control", :required => true %>
+              </div>
+              <br>
+              <div class="d-grid gap-2">
+                <%= form.submit "Register Now", class:"btn btn-secondary" %>
+              </div>
+            <% end %>
+          <% end %>
+          <% if current_admin %>
+            <hr>
+            <div class="d-grid">
+              <%= link_to "Edit", edit_customer_path(customer), class: "btn btn-danger", data: { turbo: false } %>
             </div>
           <% end %>
       </p>

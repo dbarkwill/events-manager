@@ -13,8 +13,12 @@
       <div class="card-body">
         <h5 class="card-title">Please input your employee code below to continue.</h5><br>
         <%= form_with url: sessions_path do |form| %>
-          <%= form.text_field :PIN, class:"form-control form-control-lg" %>
-          <%= form.submit "Login", class:"btn btn-lg" %>
+          <div class="form-group mb-3">
+            <%= form.text_field :PIN, class:"form-control form-control-lg" %>
+          </div>
+          <div class="d-grid gap-2">
+            <%= form.submit "Login", class:"btn btn-lg btn-primary" %>
+          </div>
         <% end %>
       </div>
     </div>
