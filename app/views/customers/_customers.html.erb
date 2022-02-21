@@ -1,9 +1,12 @@
 <%= turbo_frame_tag "customers" do %>
   <div class="clearfix">
-    <div class="row g-5">
+    <div class="row g-5 clearfix">
       <% if @customers %>
         <%= render customers %>
       <% end %>
     </div>
   </div>
+  <br>
+  <br>
+  <br>
 <% end %>
