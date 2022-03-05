@@ -5,7 +5,7 @@ class Customer < ApplicationRecord
 
   def self.search(search)
     if search
-      customers = Customer.where("customer_number = ? OR address LIKE '#{search} %' OR phys_address LIKE '#{search} %'", search)
+      customers = Customer.where("customer_number = ? OR phys_address LIKE '#{search} %'", search)
     else
       customers = Customer.all.limit(200)
     end

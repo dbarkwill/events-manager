@@ -1,6 +1,8 @@
 <%= turbo_frame_tag "customers" do %>
   <div class="clearfix">
     <div class="row g-5 clearfix">
+      <div class="alert alert-light" role="alert">
+      </div>
       <% if @customers %>
         <%= render customers %>
       <% end %>

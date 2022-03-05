@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= action_cable_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
@@ -13,36 +14,32 @@
   <body>
     <div class="container">
       <br>
-      <% if notice %>
-        <div id="row">
-          <div col="col-12">
-            <div class="alert alert-success"><%= notice %></div>
-          </div>
-        </div>
-      <% end %>
       <%= yield %>
     </div>
-    <nav class="navbar fixed-bottom navbar-light bg-light clearfix">
+
+    <nav class="navbar fixed-bottom navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Annual Meeting Check-In App v1.0</a>
-        <% if current_employee %>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <%= render "customers/stats" %>
           <div class="d-flex">
-            <span class="navbar-text px-3">Logged in as <%= current_employee.first_name %></span>
-            <%= link_to "Lookup", root_url, class:"btn btn-primary" %>
-            <span class="navbar-text px-1"></span>
-            <% if current_admin %>
-              <%= link_to "Admin Functions", admin_url, class:"btn btn-danger" %>
+            <% if current_employee %>
+              <span class="navbar-text px-3">Logged in as <%= current_employee.first_name %></span>
+              <%= link_to "Lookup", root_url, class:"btn btn-primary" %>
               <span class="navbar-text px-1"></span>
+              <% if current_admin %>
+                <%= link_to "Admin Functions", admin_url, class:"btn btn-danger" %>
+                <span class="navbar-text px-1"></span>
+              <% end %>
+              <%= link_to "Log Out", logout_url, class:"btn btn-primary" %>
+            <% else %>
+              <%= link_to "Login", login_url, class:"btn btn-primary" %>
             <% end %>
-            <%= link_to "Log Out", logout_url, class:"btn btn-primary" %>
           </div>
-        <% else %>
-          <div class="d-flex">
-            <%= link_to "Lookup", root_url, class:"btn btn-primary" %>
-            <span class="navbar-text px-1"></span>
-            <%= link_to "Login", login_url, class:"btn btn-primary" %>
-          </div>
-        <% end %>
+        </div>
       </div>
     </nav>
   </body>

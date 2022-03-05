@@ -66,8 +66,10 @@ Rails.application.configure do
   # config.action_view.annotate_rendered_view_with_filenames = true
 
   # Uncomment if you wish to allow Action Cable access from any origin.
-  # config.action_cable.disable_request_forgery_protection = true
+  config.action_cable.disable_request_forgery_protection = true
   # hostname configuration
   config.hosts.clear
+
+  config.web_console.permissions = '192.168.1.41'
 
 end

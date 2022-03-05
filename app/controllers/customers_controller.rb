@@ -66,7 +66,6 @@ class CustomersController < ApplicationController
     if turbo_frame_request?
       if @customer.update(customer_params)
         @customers = @customer
-        flash.now[:notice] ="test"
         render partial: "customers", locals: { customers: @customers }
       end
     else
@@ -80,6 +79,7 @@ class CustomersController < ApplicationController
         end
       end
     end
+    ActionCable.server.broadcast('customer_channel', {dinner_delta: dinner_delta, checked_in_count: checked_in_count})
   end
 
   # DELETE /customers/1 or /customers/1.json
@@ -100,6 +100,6 @@ class CustomersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def customer_params
-      params.require(:customer).permit(:customer_number, :name, :phone_number, :search, :address, :file, :checked_in, :registered, :registered_at_event, :dinner_count, :phys_address)
+      params.require(:customer).permit(:customer_number, :name, :phone_number, :search, :address, :file, :checked_in, :registered, :registered_at_event, :dinner_count, :phys_address, :co, :actual_dinner_count)
     end
 end

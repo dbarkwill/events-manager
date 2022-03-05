@@ -20,13 +20,26 @@
           <b>Address:</b> <%= customer.address %><br>
           <b>Physical Address:</b> <%= customer.phys_address %><br>
           <b>Phone Number:</b> <%= customer.phone_number %><br>
-          <b>Customer Number:</b> <%= customer. customer_number %><br>
+          <b>Account Number:</b> <%= customer.customer_number %><br>
+          <% if customer.checked_in %>
+            <b>Dinner Count:</b> <%= customer.actual_dinner_count %>
+          <% else %>
+            <% if customer.registered %>
+              <b>Dinner Count:</b> <%= customer.dinner_count %>
+            <% else %>
+              <b>Dinner Count:</b> 0
+            <% end %>
+          <% end %>
           <% if customer.registered %>
-            <b>Dinner Count:</b> <%= customer.dinner_count %>
               <% if !customer.checked_in %>
                 <hr>
                 <%= form_with(model: customer, data: { turbo_frame: "customers" }) do |form| %>
                   <%= form.hidden_field :checked_in, value: 1 %>
+                  <div class="form-group">
+                    <label>Dinner Count:</label>
+                    <%= form.number_field :actual_dinner_count, class:"form-control", :required => true, value: customer.dinner_count %>
+                  </div>
+                  <br>
                   <div class="d-grid gap-2">
                     <%= form.submit "Check-In", class:"btn btn-primary" %>
                   </div>
@@ -40,7 +53,7 @@
               <%= form.hidden_field :checked_in, value: 1 %>
               <div class="form-group">
                 <label>Dinner Count:</label>
-                <%= form.number_field :dinner_count, class:"form-control", :required => true %>
+                <%= form.number_field :actual_dinner_count, class:"form-control", :required => true, value: 0 %>
               </div>
               <br>
               <div class="d-grid gap-2">

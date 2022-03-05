@@ -1,15 +1,13 @@
 Rails.application.routes.draw do
+  mount ActionCable.server, at: '/cable'
   root 'customers#lookup'
 
   get 'lookup', to: 'customers#lookup'
   get 'customers/export_attendance', to: 'customers#export_attendance'
   get 'admin', to: 'static_pages#admin'
 
-  resources :check_ins
   resources :employees
-  resources :registrations
   resources :customers do
-    resources :registrations
     collection { post :import }
   end
 
