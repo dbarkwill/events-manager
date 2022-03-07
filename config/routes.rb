@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  mount ActionCable.server, at: '/cable'
+  # mount ActionCable.server, at: '/cable'
   root 'customers#lookup'
 
   get 'lookup', to: 'customers#lookup'
@@ -8,7 +8,10 @@ Rails.application.routes.draw do
 
   resources :employees
   resources :customers do
-    collection { post :import }
+    collection do
+      post :import
+      post :import_reg
+    end
   end
 
   resources :sessions, only: [:new, :create, :destroy]

@@ -37,6 +37,14 @@ class CustomersController < ApplicationController
     redirect_to root_url, notice: "Customers have been imported"
   end
 
+  # POST /customers/import_reg
+  def import_reg
+    CSV.foreach(params[:file], headers: true) do |row|
+      customer = Customer.find_or_initialize_by_customer_id(customer_id)
+      customer.update_attributes(row.to_hash)
+    end
+  end
+
   # GET /customers/export_attendance
   def export_attendance
       @customers = Customer.filter_by_checked_in(true)

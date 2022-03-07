@@ -5,4 +5,3 @@ import "channels/customers_channel"
 import * as ActionCable from '@rails/actioncable'
 window.App || (window.App = {});
 window.App.cable = ActionCable.createConsumer();
-ActionCable.logger.enabled = true;
