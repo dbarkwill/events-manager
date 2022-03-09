@@ -13,7 +13,7 @@ class Customer < ApplicationRecord
   end
 
   def self.to_csv
-    attributes = %w{customer_number name dinner_count registered_at_event}
+    attributes = %w{customer_number co name phys_address dinner_count actual_dinner_count registered_at_event voted}
     CSV.generate(headers: true) do |csv|
       csv << attributes
       all.each do |customer|
@@ -21,6 +21,4 @@ class Customer < ApplicationRecord
       end
     end
   end
-
-
 end

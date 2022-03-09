@@ -40,9 +40,11 @@ class CustomersController < ApplicationController
   # POST /customers/import_reg
   def import_reg
     CSV.foreach(params[:file], headers: true) do |row|
-      customer = Customer.find_or_initialize_by_customer_id(customer_id)
-      customer.update_attributes(row.to_hash)
+      puts row
+      @customer = Customer.find_by customer_number: row["customer_number"]
+      @customer.update row.to_h
     end
+    redirect_to root_url, notice: "Customers have been updated."
   end
 
   # GET /customers/export_attendance
