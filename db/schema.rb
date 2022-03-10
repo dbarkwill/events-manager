@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2022_02_22_180508) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "customers", force: :cascade do |t|
     t.string "customer_number"
     t.string "name"
@@ -25,7 +28,7 @@ ActiveRecord::Schema.define(version: 2022_02_22_180508) do
     t.string "phys_address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "actual_dinner_count"
+    t.integer "actual_dinner_count"
     t.string "co"
   end
 

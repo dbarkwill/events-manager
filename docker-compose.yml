@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: event_manager
+      POSTGRES_PASSWORD: test_db_password
+    volumes:
+      - postgres:/var/lib/postgresql/data
+  web:
+    build:
+      context: .
+      args:
+        USER_ID: "${USER_ID:-1000}"
+        GROUP_ID: "${GROUP_ID:-1000}"
+    volumes:
+      - .:/opt/app
+    ports:
+      - "8010:8010"
+    depends_on:
+      - db
+    env_file:
+      - .env
+volumes:
+  postgres:
