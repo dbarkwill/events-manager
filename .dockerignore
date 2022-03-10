@@ -1,0 +1,8 @@
+.git
+.dockerignore
+.env
+env_example
+node_modules/
+vendor/bundle/
+Dockerfile
+Dockerfile.nginx

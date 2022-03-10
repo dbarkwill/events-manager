@@ -70,6 +70,4 @@ Rails.application.configure do
   # hostname configuration
   config.hosts.clear
 
-  config.web_console.permissions = '192.168.1.41'
-
 end
