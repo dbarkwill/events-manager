@@ -1,14 +1,17 @@
 <div class="col-4 gy-2" id="<%= dom_id customer %>">
     <div class="card p-3">
-      <h5 class="card-title"><%= customer.name %></h5>
+      <h5 class="card-title"><%= customer.name %><% if customer.is_employee %> - (Employee)<% end %><% if customer.is_director %> - (Director)<% end %></h5>
       <p class="card-text">
           <% if customer.registered %>
-            <span class="badge bg-success">Registered</span>
+            <span class="badge bg-success">RSVP</span>
             <% if customer.checked_in %>
               <span class="badge bg-success">Checked-In</span>
             <% end %>
           <% else %>
-            <span class="badge bg-secondary">Not Registered</span>
+            <span class="badge bg-secondary">No RSVP</span>
+            <% if customer.checked_in %>
+              <span class="badge bg-success">Checked-In</span>
+            <% end %>
           <% end %>
           <% if customer.voted %>
             <span class="badge bg-info text-dark">Voted</span>
@@ -46,19 +49,20 @@
                 <% end %>
               <% end %>
           <% else %>
-            <hr>
-            <%= form_with(model: customer, data: { turbo_frame: "customers" }) do |form| %>
-              <%= form.hidden_field :registered, value: 1 %>
-              <%= form.hidden_field :registered_at_event, value: 1 %>
-              <%= form.hidden_field :checked_in, value: 1 %>
-              <div class="form-group">
-                <label>Dinner Count:</label>
-                <%= form.number_field :actual_dinner_count, class:"form-control", :required => true, value: 0 %>
-              </div>
-              <br>
-              <div class="d-grid gap-2">
-                <%= form.submit "Register Now", class:"btn btn-secondary" %>
-              </div>
+            <% if !customer.checked_in %>
+              <hr>
+              <%= form_with(model: customer, data: { turbo_frame: "customers" }) do |form| %>
+                <%= form.hidden_field :registered_at_event, value: 1 %>
+                <%= form.hidden_field :checked_in, value: 1 %>
+                <div class="form-group">
+                  <label>Dinner Count:</label>
+                  <%= form.number_field :actual_dinner_count, class:"form-control", :required => true, value: 0 %>
+                </div>
+                <br>
+                <div class="d-grid gap-2">
+                  <%= form.submit "Register & Check-In", class:"btn btn-secondary" %>
+                </div>
+              <% end %>
             <% end %>
           <% end %>
           <% if current_admin %>

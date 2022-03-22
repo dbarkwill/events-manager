@@ -1,6 +1,9 @@
 class Customer < ApplicationRecord
   validates :customer_number, presence: true
   scope :filter_by_checked_in, -> (checked_in) {where checked_in: checked_in}
+  
+  attr_accessor :is_employee, :is_director
+
   require 'csv'
 
   def self.search(search)
@@ -19,6 +22,22 @@ class Customer < ApplicationRecord
       all.each do |customer|
         csv << attributes.map{ |attr| customer.send(attr)}
       end
+    end
+  end
+
+  def is_employee
+    if self[:empdir].include? "X"
+      return true
+    else
+      return false
+    end
+  end
+
+  def is_director
+    if self[:empdir].include? "D"
+      return true
+    else
+      return false
     end
   end
 end

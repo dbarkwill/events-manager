@@ -16,9 +16,9 @@
           <td><%= customer.name %></td>
           <td><%= customer.address %></td>
           <td><%= customer.phys_address %></td>
-          <td><% if customer.registered %><span class="badge bg-success">Registered</span><% else %><span class="badge bg-secondary">Not Registered</span><% end %></td>
+          <td><% if customer.registered %><span class="badge bg-success">RSVP</span><% else %><span class="badge bg-secondary">No RSVP</span><% end %></td>
           <td><% if customer.voted %><span class="badge bg-success">Voted</span><% else %><span class="badge bg-secondary">Not Voted</span><% end %></td>
-          <td><% if customer.checked_in && customer.registered %> <span class="badge bg-success">Checked In</span><% end %></td>
+          <td><% if customer.checked_in %> <span class="badge bg-success">Checked-In</span><% end %></td>
           <td><%= link_to "View", customer_path(customer), class:"badge bg-info" %></td>
       </tr>
     <% end %>
