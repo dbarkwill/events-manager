@@ -26,16 +26,24 @@ class Customer < ApplicationRecord
   end
 
   def is_employee
-    if self[:empdir].include? "X"
-      return true
+    if self[:empdir]
+      if self[:empdir].include? "X"
+        return true
+      else
+        return false
+      end
     else
       return false
     end
   end
 
   def is_director
-    if self[:empdir].include? "D"
-      return true
+    if self[:empdir]
+      if self[:empdir].include? "D"
+        return true
+      else
+        return false
+      end
     else
       return false
     end

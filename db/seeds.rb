@@ -7,8 +7,8 @@
 #   Character.create(name: "Luke", movie: movies.first)
 #
 Employee.create!([{
-  first_name: "Dakota",
-  last_name: "Barkwill",
+  first_name: "Default",
+  last_name: "Admin",
   PIN: "313131",
   is_admin: true
 }])

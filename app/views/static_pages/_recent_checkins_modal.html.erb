@@ -22,7 +22,7 @@
                   <td><%= customer.customer_number %></td>
                   <td><%= customer.name %></td>
                   <td><%= customer.address %></td>
-                  <td><%= customer.dinner_count %></td>
+                  <td><%= customer.actual_dinner_count %></td>
                   <td><% if customer.registered_at_event %>Yes<% else %>No<% end %></td>
                   <td><%= link_to "View", customer_path(customer), class:"badge bg-info" %>
               </tr>

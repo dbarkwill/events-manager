@@ -5,12 +5,15 @@ class CreateCustomers < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :phone_number
       t.string :address
-      t.boolean :registered
+      t.string :phys_address
+      t.string :co
+      t.string :empdir
       t.integer :dinner_count
+      t.integer :actual_dinner_count
+      t.boolean :registered
       t.boolean :checked_in
       t.boolean :registered_at_event
       t.boolean :voted
-      t.string :phys_address
       t.timestamps
     end
   end

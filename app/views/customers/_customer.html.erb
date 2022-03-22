@@ -1,29 +1,27 @@
 <div class="col-4 gy-2" id="<%= dom_id customer %>">
-    <div class="card p-3">
-      <h5 class="card-title"><%= customer.name %><% if customer.is_employee %> - (Employee)<% end %><% if customer.is_director %> - (Director)<% end %></h5>
-      <p class="card-text">
-          <% if customer.registered %>
-            <span class="badge bg-success">RSVP</span>
-            <% if customer.checked_in %>
-              <span class="badge bg-success">Checked-In</span>
-            <% end %>
-          <% else %>
-            <span class="badge bg-secondary">No RSVP</span>
-            <% if customer.checked_in %>
-              <span class="badge bg-success">Checked-In</span>
-            <% end %>
-          <% end %>
-          <% if customer.voted %>
-            <span class="badge bg-info text-dark">Voted</span>
-          <% else %>
-            <span class="badge bg-secondary">Not Voted</span>
-          <% end %>
-          <br>
-          <br>
-          <b>Address:</b> <%= customer.address %><br>
-          <b>Physical Address:</b> <%= customer.phys_address %><br>
+  <div class="card">
+    <h5 class="card-header"><%= customer.name.titleize %><% if customer.is_employee %> - Employee<% end %><% if customer.is_director %> - Director<% end %>
+      <% if current_admin %>
+        <%= link_to edit_customer_path(customer), data: { turbo: false } do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square float-end" viewBox="0 0 16 16">
+            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+          </svg>
+        <% end %>
+      <% end %>
+    </h5>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <% if customer.registered %><span class="badge bg-success">RSVP</span><% else %><span class="badge bg-secondary">No RSVP</span><% end %>
+          <% if customer.checked_in %><span class="badge bg-success">Checked-In</span><% end %>
+          <% if customer.voted %><span class="badge bg-info text-dark">Voted</span><% end %>
+        </li>
+        <li class="list-group-item">
+          <b>Mailing Address:</b> <%= customer.address.titleize %><br>
+          <b>Physical Address:</b> <%= customer.phys_address.titleize %><br>
           <b>Phone Number:</b> <%= customer.phone_number %><br>
           <b>Account Number:</b> <%= customer.customer_number %><br>
+          <b>Member Number:</b> <%= customer.member_number %><br>
           <% if customer.checked_in %>
             <b>Dinner Count:</b> <%= customer.actual_dinner_count %>
           <% else %>
@@ -33,44 +31,34 @@
               <b>Dinner Count:</b> 0
             <% end %>
           <% end %>
-          <% if customer.registered %>
-              <% if !customer.checked_in %>
-                <hr>
-                <%= form_with(model: customer, data: { turbo_frame: "customers" }) do |form| %>
-                  <%= form.hidden_field :checked_in, value: 1 %>
-                  <div class="form-group">
-                    <label>Dinner Count:</label>
-                    <%= form.number_field :actual_dinner_count, class:"form-control", :required => true, value: customer.dinner_count %>
-                  </div>
-                  <br>
-                  <div class="d-grid gap-2">
-                    <%= form.submit "Check-In", class:"btn btn-primary" %>
-                  </div>
-                <% end %>
-              <% end %>
-          <% else %>
-            <% if !customer.checked_in %>
-              <hr>
-              <%= form_with(model: customer, data: { turbo_frame: "customers" }) do |form| %>
+        </li>
+        <% if !customer.checked_in %>
+          <li class="list-group-item">
+            <%= form_with(model: customer, data: { turbo_frame: "customers" }) do |form| %>
+              <%= form.hidden_field :checked_in, value: 1 %>
+              <% if customer.registered %>
+                <div class="form-group">
+                  <label>Dinner Count:</label>
+                  <%= form.number_field :actual_dinner_count, class:"form-control", :required => true, value: customer.dinner_count %>
+                </div>
+                <br>
+                <div class="d-grid">
+                  <%= form.submit "Check-In", class:"btn btn-primary" %>
+                </div>
+              <% else %>
                 <%= form.hidden_field :registered_at_event, value: 1 %>
-                <%= form.hidden_field :checked_in, value: 1 %>
                 <div class="form-group">
                   <label>Dinner Count:</label>
                   <%= form.number_field :actual_dinner_count, class:"form-control", :required => true, value: 0 %>
                 </div>
                 <br>
-                <div class="d-grid gap-2">
-                  <%= form.submit "Register & Check-In", class:"btn btn-secondary" %>
+                <div class="d-grid">
+                  <%= form.submit "Register & Check-In", class:"btn btn-primary" %>
                 </div>
               <% end %>
             <% end %>
-          <% end %>
-          <% if current_admin %>
-            <hr>
-            <div class="d-grid">
-              <%= link_to "Edit", edit_customer_path(customer), class: "btn btn-danger", data: { turbo: false } %>
-            </div>
-          <% end %>
-      </p>
-    </div>
+          </li>
+        <% end %>
+    </ul>
+  </div>
 </div>
