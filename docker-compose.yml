@@ -7,6 +7,7 @@ services:
       POSTGRES_PASSWORD: test_db_password
     volumes:
       - postgres:/var/lib/postgresql/data
+    restart: always
   web:
     build:
       context: .
@@ -20,6 +21,7 @@ services:
       - redis
     env_file:
       - .env
+    restart: always
   proxy:
     build:
       context: .
@@ -28,12 +30,14 @@ services:
       - '80:80'
     depends_on:
       - web
+    restart: always
   redis:
     image: redis:6.2.6
     ports:
       - '6379:6379'
     volumes:
       - redis:/var/lib/redis/data
+    restart: always
 volumes:
   postgres:
   redis:
