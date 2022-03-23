@@ -4,6 +4,8 @@ class StaticPagesController < ApplicationController
   helper_method :total_rsvp
   helper_method :checked_in_percentage
 
+  before_action :authorized, only: [:admin]
+
   def home
     @customers = Customer.all
     @employee = Employee.new

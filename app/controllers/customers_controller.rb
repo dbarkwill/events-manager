@@ -1,5 +1,6 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: %i[ show edit update destroy ]
+  before_action :authorized, only: %i[ new edit import import_reg export_attendance create destroy]
   require 'csv'
 
   # GET /customers or /customers.json

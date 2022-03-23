@@ -12,6 +12,14 @@ class ApplicationController < ActionController::Base
     @current_admin ||= Employee.find_by(id: session[:employee_id], is_admin: true) if session[:employee_id]
   end
 
+  def admin?
+    !current_admin.nil?
+  end
+
+  def authorized
+    redirect_to '/login' unless admin?
+  end
+
   def dinner_delta
     @dinner_delta = 100 - (Customer.filter_by_checked_in(true).sum(:actual_dinner_count).to_i - Customer.filter_by_checked_in(true).sum(:dinner_count).to_i)
   end
