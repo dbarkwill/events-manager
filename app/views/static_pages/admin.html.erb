@@ -16,12 +16,22 @@
     </div>
   </div>
   <div class="col-6">
+    <% if notice %>
+      <div class="row">
+        <div class="col-12">
+          <div class="alert alert-success alert-dismissible" role="alert">
+            <%= notice %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        </div>
+      </div>
+    <% end %>
     <div class="row">
       <div class="col-6 p-3">
         <div class="card">
           <h5 class="card-header">Total RSVPs</h5>
           <div class="card-body">
-            <h1><%= total_rsvp %></h1>
+            <h1 id="stat_rsvp"><%= total_rsvp %></h1>
           </div>
         </div>
       </div>
@@ -29,7 +39,7 @@
         <div class="card">
           <h5 class="card-header">Total Checked-In Customers</h5>
           <div class="card-body">
-            <h1><%= total_checkins %></h1>
+            <h1 id="stat_checked_in"><%= total_checkins %></h1>
           </div>
         </div>
       </div>
@@ -37,7 +47,7 @@
         <div class="card">
           <h5 class="card-header">Total Walk-Ins</h5>
           <div class="card-body">
-            <h1><%= total_walkins %></h1>
+            <h1 id="stat_walk_ins"><%= total_walkins %></h1>
           </div>
         </div>
       </div>
@@ -45,7 +55,7 @@
         <div class="card">
           <h5 class="card-header">Checked-In Percentage</h5>
           <div class="card-body">
-            <h1><%= checked_in_percentage %>%</h1>
+            <h1 id="stat_percentage"><%= checked_in_percentage %>%</h1>
           </div>
         </div>
       </div>

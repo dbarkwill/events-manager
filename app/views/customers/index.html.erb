@@ -1,11 +1,5 @@
 <div id="customers clearfix">
-  <% if @customers.count > 1 %>
-    <%= render "customertable" %>
-  <% else %>
-    <% @customers.each do |customer| %>
-      <%= render customer %>
-    <% end %>
-  <% end %>
+  <%= render "customertable" %>
 </div>
 <br>
 <br>

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     collection do
       post :import
       post :import_reg
+      get :rsvp
     end
   end
 

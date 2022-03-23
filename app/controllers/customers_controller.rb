@@ -21,6 +21,10 @@ class CustomersController < ApplicationController
   def edit
   end
 
+  def rsvp
+    @customers = Customer.filter_by_rsvp(true).filter_by_checked_in(nil)
+  end
+
   def lookup
       if turbo_frame_request?
         @customers = Customer.search(params[:search])
@@ -35,7 +39,7 @@ class CustomersController < ApplicationController
       customers << row.to_h
     end
     Customer.import(customers)
-    redirect_to root_url, notice: "Customers have been imported"
+    redirect_to admin_path, notice: "Customers have been imported."
   end
 
   # POST /customers/import_reg
@@ -45,7 +49,7 @@ class CustomersController < ApplicationController
       @customer = Customer.find_by customer_number: row["customer_number"]
       @customer.update row.to_h
     end
-    redirect_to root_url, notice: "Customers have been updated."
+    redirect_to admin_path, notice: "Customers have been updated."
   end
 
   # GET /customers/export_attendance
@@ -91,6 +95,7 @@ class CustomersController < ApplicationController
       end
     end
     ActionCable.server.broadcast('customer_channel', {dinner_delta: dinner_delta, checked_in_count: checked_in_count})
+    ActionCable.server.broadcast('admin_channel', {stat_rsvp: total_rsvp, stat_checked_in: total_checkins, stat_walk_ins: total_walkins, stat_percentage: checked_in_percentage, rc_cn: @customer.customer_number, rc_name: @customer.name, rc_add: @customer.phys_address, rc_dc: @customer.actual_dinner_count, rc_walkin: if @customer.registered_at_event then "Yes" else "No" end})
   end
 
   # DELETE /customers/1 or /customers/1.json
