@@ -1,6 +1,8 @@
 class Customer < ApplicationRecord
   validates :customer_number, presence: true
   scope :filter_by_checked_in, -> (checked_in) {where checked_in: checked_in}
+  scope :filter_by_registered_at_event, -> (registered_at_event) {where registered_at_event: registered_at_event}
+  scope :filter_by_rsvp, -> (rsvp) {where registered: rsvp}
   
   attr_accessor :is_employee, :is_director
 

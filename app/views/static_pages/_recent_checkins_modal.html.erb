@@ -1,38 +1,23 @@
-<div class="modal fade" tabindex="-1" id="recentcheckins">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Recent Check-Ins</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Customer Number</th>
-              <th scope="col">Name</th>
-              <th scope="col">Address</th>
-              <th scope="col">Dinner Count</th>
-              <th scope="col">Registered at Event</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @recent_checkins.each do |customer| %>
-              <tr>
-                  <td><%= customer.customer_number %></td>
-                  <td><%= customer.name %></td>
-                  <td><%= customer.address %></td>
-                  <td><%= customer.actual_dinner_count %></td>
-                  <td><% if customer.registered_at_event %>Yes<% else %>No<% end %></td>
-                  <td><%= link_to "View", customer_path(customer), class:"badge bg-info" %>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Customer Number</th>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Dinner Count</th>
+      <th scope="col">Registered at Event</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @recent_checkins.each do |customer| %>
+      <tr>
+        <td><%= customer.customer_number %></td>
+        <td><%= customer.name %></td>
+        <td><%= customer.address %></td>
+        <td><%= customer.actual_dinner_count %></td>
+        <td><% if customer.registered_at_event %>Yes<% else %>No<% end %></td>
+        <td><%= link_to "View", customer_path(customer), class:"badge bg-info" %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,59 +1,68 @@
-<%= render "static_pages/upload_customers_modal" %>
-<%= render "static_pages/upload_registrations_modal" %>
-<%= render "static_pages/new_customer_modal", customer: @customer %>
-<%= render "static_pages/new_employee_modal", employee: @employee %>
-<%= render "static_pages/export_attendance_modal" %>
-<%= render "static_pages/recent_checkins_modal" %>
-<%= render "static_pages/view_employees_modal" %>
-<h1 class="display-4">Admin Functions</h1>
+<h1 class="display-4">Admin Dashboard</h1>
+<br>
 <div class="row">
-  <div class="col-4 gy-5">
-    <a data-bs-toggle="modal" data-bs-target="#uploadcustomers">
-      <div class="card p-3">
-        <h3>Upload Customers</h3>
+  <div class="col-6">
+    <div class="row">
+      <div class="col-12">
+        <div class="accordion" id="accordion">
+          <%= render "static_pages/upload_customers_modal" %>
+          <%= render "static_pages/upload_registrations_modal" %>
+          <%= render "static_pages/export_attendance_modal" %>
+          <%= render "static_pages/new_customer_modal", customer: @customer %>
+          <%= render "static_pages/new_employee_modal", employee: @employee %>
+          <%= render "static_pages/view_employees_modal" %>
+        </div>
       </div>
-    </a>
+    </div>
   </div>
-  <div class="col-4 gy-5">
-    <a data-bs-toggle="modal" data-bs-target="#uploadregistrations">
-      <div class="card p-3">
-        <h3>Upload Registrations</h3>
+  <div class="col-6">
+    <div class="row">
+      <div class="col-6 p-3">
+        <div class="card">
+          <h5 class="card-header">Total RSVPs</h5>
+          <div class="card-body">
+            <h1><%= total_rsvp %></h1>
+          </div>
+        </div>
       </div>
-    </a>
-  </div>
-  <div class="col-4 gy-5">
-    <a data-bs-toggle="modal" data-bs-target="#exportattendance">
-      <div class="card p-3">
-        <h3>Export Attendance</h3>
+      <div class="col-6 p-3">
+        <div class="card">
+          <h5 class="card-header">Total Checked-In Customers</h5>
+          <div class="card-body">
+            <h1><%= total_checkins %></h1>
+          </div>
+        </div>
       </div>
-    </a>
-  </div>
-  <div class="col-4 gy-5">
-    <a data-bs-toggle="modal" data-bs-target="#recentcheckins">
-      <div class="card p-3">
-        <h3>Recent Check-Ins</h3>
+      <div class="col-6 p-3">
+        <div class="card">
+          <h5 class="card-header">Total Walk-Ins</h5>
+          <div class="card-body">
+            <h1><%= total_walkins %></h1>
+          </div>
+        </div>
       </div>
-    </a>
-  </div>
-  <div class="col-4 gy-5">
-    <a data-bs-toggle="modal" data-bs-target="#newcustomer">
-      <div class="card p-3">
-        <h3>Create Customer</h3>
+      <div class="col-6 p-3">
+        <div class="card">
+          <h5 class="card-header">Checked-In Percentage</h5>
+          <div class="card-body">
+            <h1><%= checked_in_percentage %>%</h1>
+          </div>
+        </div>
       </div>
-    </a>
-  </div>
-  <div class="col-4 gy-5">
-    <a data-bs-toggle="modal" data-bs-target="#newemployee">
-      <div class="card p-3">
-        <h3>Create Employee</h3>
-      </div>
-    </a>
-  </div>
-  <div class="col-4 gy-5">
-    <a data-bs-toggle="modal" data-bs-target="#viewemployees">
-      <div class="card p-3">
-        <h3>View Employees</h3>
-      </div>
-    </a>
+    </div>
   </div>
 </div>
+<br>
+<div class="clearfix">
+  <div class="row clearfix">
+    <div class="col-12">
+      <h4>Recent Check-Ins:</h4>
+      <% if total_checkins > 0 %>
+        <%= render "static_pages/recent_checkins_modal" %>
+      <% else %>
+        <h6>No customers have checked-in yet!</h5>
+      <% end %>
+    </div>
+  </div>
+</div>
+<br><br>

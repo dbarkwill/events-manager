@@ -1,18 +1,16 @@
-<div class="modal fade" tabindex="-1" id="uploadregistrations">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Upload Registrations</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <%= form_tag import_reg_customers_path, multipart:true do %>
-          <%= file_field_tag :file, class:"form-control" %>
-      </div>
-      <div class="modal-footer">
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingIR">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIR" aria-expanded="false" aria-controls="collapseIR">
+      Import Registrations
+    </button>
+  </h2>
+  <div id="collapseIR" class="accordion-collapse collapse" aria-labelledby="headingIR" data-bs-parent="#accordion">
+    <div class="accordion-body">
+      Import the registrations below. The import file should be a CSV. The following fields are allowed: <code>customer_number</code>, <code>dinner_count</code>, <code>registered</code>, <code>voted</code>. The CSV should be a standard comma delimated file including a header. The <code>customer_number</code> is manditory and should be present for each row. <br><br>
+      <%= form_tag import_reg_customers_path, multipart:true do %>
+        <%= file_field_tag :file, class:"form-control" %>
+        <br>
         <%= submit_tag "Import CSV", class:"btn btn-primary" %>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
       <% end %>
     </div>
   </div>

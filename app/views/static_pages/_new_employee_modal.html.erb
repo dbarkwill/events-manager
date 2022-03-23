@@ -1,36 +1,36 @@
-<div class="modal fade" tabindex="-1" id="newemployee">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Create Employee</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <%= form_with(model: employee) do |form| %>
-
-          <div class="mb-3">
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingNE">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNE" aria-expanded="false" aria-controls="collapseNE">
+      New Employee
+    </button>
+  </h2>
+  <div id="collapseNE" class="accordion-collapse collapse" aria-labelledby="headingNE" data-bs-parent="#accordion">
+    <div class="accordion-body">
+      Fill out the form below to create a new employee.<br><br>
+      <%= form_with(model: employee) do |form| %>
+        <div class="row">
+          <div class="col-6">
             <label class="form-label">First Name:</label>
             <%= form.text_field :first_name, class:"form-control" %>
           </div>
-
-          <div class="mb-3">
+          <div class="col-6">
             <label class="form-label">Last Name:</label>
             <%= form.text_field :last_name, class:"form-control" %>
           </div>
-
-          <div class="mb-3">
+          <div class="col-6">
             <label class="form-label">PIN:</label>
             <%= form.text_field :PIN, class:"form-control" %>
           </div>
-          <div class="mb-3">
+          <div class="col-6">
+            <br>
             <%= form.check_box :is_admin, class:"form-check-input" %>
             <label class="form-check-label">Admin</label>
           </div>
-      </div>
-      <div class="modal-footer">
-          <%= submit_tag "Create Employee", class:"btn btn-primary" %>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
+          <div class="col-6">
+            <br>
+            <%= submit_tag "Create Employee", class:"btn btn-primary" %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
