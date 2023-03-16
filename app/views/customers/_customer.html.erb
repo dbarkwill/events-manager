@@ -26,9 +26,9 @@
             <b>Dinner Count:</b> <%= customer.actual_dinner_count %>
           <% else %>
             <% if customer.registered %>
-              <b>Dinner Count:</b> <%= customer.dinner_count %>
+              <b>Dinner(s) Registered For:</b> <%= customer.dinner_count %>
             <% else %>
-              <b>Dinner Count:</b> 0
+              <b>Dinner(s) Registered For:</b> 0
             <% end %>
           <% end %>
         </li>
@@ -38,8 +38,10 @@
               <%= form.hidden_field :checked_in, value: 1 %>
               <% if customer.registered %>
                 <div class="form-group">
-                  <label>Dinner Count:</label>
-                  <%= form.number_field :actual_dinner_count, class:"form-control", :required => true, value: customer.dinner_count %>
+		  <div class="input-group">
+                    <%= form.number_field :actual_dinner_count, class:"form-control", :required => true, value: customer.dinner_count %>
+                    <span class="input-group-text">Dinner(s) Needed</span>
+                  </div>
                 </div>
                 <br>
                 <div class="d-grid">
@@ -48,8 +50,10 @@
               <% else %>
                 <%= form.hidden_field :registered_at_event, value: 1 %>
                 <div class="form-group">
-                  <label>Dinner Count:</label>
-                  <%= form.number_field :actual_dinner_count, class:"form-control", :required => true, value: 0 %>
+                  <div class="input-group">
+                    <%= form.number_field :actual_dinner_count, class:"form-control", :required => true, value: 0 %>
+		    <span class="input-group-text">Dinner(s) Needed</span>
+		  </div>
                 </div>
                 <br>
                 <div class="d-grid">
