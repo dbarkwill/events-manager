@@ -26,7 +26,7 @@
             <b>Dinner Count:</b> <%= customer.actual_dinner_count %>
           <% else %>
             <% if customer.registered %>
-              <b>Dinner(s) Registered For:</b> <%= customer.dinner_count %>
+             <% if customer.dinner_count == 0 %> <span class="text-danger"> <% else %> <span class="text-body"> <% end %> <b>Dinner(s) Registered For:</b>  <%= customer.dinner_count %> </span>
             <% else %>
               <b>Dinner(s) Registered For:</b> 0
             <% end %>
