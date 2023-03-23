@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   end
 
   def dinner_delta
-    @dinner_delta = 100 - (Customer.filter_by_checked_in(true).sum(:actual_dinner_count).to_i - Customer.filter_by_checked_in(true).sum(:dinner_count).to_i)
+    @dinner_delta = (ENV["MEALS_PURCHASED"].to_i - Customer.filter_by_rsvp(true).sum(:dinner_count).to_i) - (Customer.filter_by_checked_in(true).sum(:actual_dinner_count).to_i - Customer.filter_by_checked_in(true).sum(:dinner_count).to_i)
   end
 
   def checked_in_count
