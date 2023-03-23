@@ -42,3 +42,8 @@ DATABASE_URL=postgresql://event_manager:test_db_password@db:5432/event_manager?e
 CACHE_URL=redis://redis:6379/0
 JOB_WORKER_URL=redis://redis:6379/0
 REDIS_URL=redis://redis:6379
+
+
+# Instance Tracking
+INSTANCE=primary
+MEALS_PURCHASED=400
