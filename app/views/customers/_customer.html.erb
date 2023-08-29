@@ -23,12 +23,12 @@
           <b>Account Number:</b> <%= customer.customer_number %><br>
           <b>Member Number:</b> <%= customer.member_number %><br>
           <% if customer.checked_in %>
-            <b>Dinner Count:</b> <%= customer.actual_dinner_count %>
+            <b>Meal Count:</b> <%= customer.actual_dinner_count %>
           <% else %>
             <% if customer.registered %>
              <% if customer.dinner_count == 0 %> <span class="text-danger"> <% else %> <span class="text-body"> <% end %> <b>Dinner(s) Registered For:</b>  <%= customer.dinner_count %> </span>
             <% else %>
-              <b>Dinner(s) Registered For:</b> 0
+              <b>Meals(s) Registered For:</b> 0
             <% end %>
           <% end %>
         </li>
@@ -51,9 +51,16 @@
                 <%= form.hidden_field :registered_at_event, value: 1 %>
                 <div class="form-group">
                   <div class="input-group">
-                    <%= form.number_field :actual_dinner_count, class:"form-control", :required => true, value: 0 %>
-		    <span class="input-group-text">Dinner(s) Needed</span>
-		  </div>
+                    <%= form.number_field :actual_dinner_count, class:"form-control", :required => true, value: 0, max: 4 %>
+                    <span class="input-group-text">Meal Tickets</span>
+                  </div>
+                </div>
+                <br>
+                <div class="form-group">
+                  <div class="input-group">
+                    <%= form.number_field :attendees, class:"form-control", :required => true, value: 0 %>
+                    <span class="input-group-text">Attendees</span>
+                  </div>
                 </div>
                 <br>
                 <div class="d-grid">
