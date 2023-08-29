@@ -94,7 +94,7 @@ class CustomersController < ApplicationController
         end
       end
     end
-    ActionCable.server.broadcast('customer_channel', {dinner_delta: dinner_delta, checked_in_count: checked_in_count})
+    ActionCable.server.broadcast('customer_channel', {dinner_delta: dinner_delta, checked_in_count: checked_in_count, attendee_count: attendee_count})
     ActionCable.server.broadcast('admin_channel', {stat_rsvp: total_rsvp, stat_checked_in: total_checkins, stat_walk_ins: total_walkins, stat_percentage: checked_in_percentage, rc_cn: @customer.customer_number, rc_name: @customer.name, rc_add: @customer.phys_address, rc_dc: @customer.actual_dinner_count, rc_walkin: if @customer.registered_at_event then "Yes" else "No" end})
   end
 
@@ -116,6 +116,6 @@ class CustomersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def customer_params
-      params.require(:customer).permit(:customer_number, :name, :phone_number, :search, :address, :file, :checked_in, :registered, :registered_at_event, :dinner_count, :phys_address, :co, :actual_dinner_count, :empdir, :member_number)
+      params.require(:customer).permit(:customer_number, :name, :phone_number, :search, :address, :file, :checked_in, :registered, :registered_at_event, :dinner_count, :phys_address, :co, :actual_dinner_count, :empdir, :member_number, :attendees)
     end
 end
