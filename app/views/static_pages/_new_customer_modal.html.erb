@@ -1,44 +1,35 @@
-<div class="accordion-item">
-  <h2 class="accordion-header" id="headingNC">
-    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNC" aria-expanded="false" aria-controls="collapseNC">
-      New Customer
-    </button>
-  </h2>
-  <div id="collapseNC" class="accordion-collapse collapse" aria-labelledby="headingNC" data-bs-parent="#accordion">
-    <div class="accordion-body">
-      Fill out the form below to create a new customer.<br><br>
-      <%= form_with(model: customer) do |form| %>
-        <div class="row">
-          <div class="col-6">
-            <label class="form-label">Customer Number:</label>
-            <%= form.text_field :customer_number, class:"form-control" %>
-          </div>
-          <div class="col-6">
-            <label class="form-label">Full Name:</label>
-            <%= form.text_field :name, class:"form-control" %>
-          </div>
-          <div class="col-6">
-            <label class="form-label">Phone Number:</label>
-            <%= form.text_field :phone_number, class:"form-control" %>
-          </div>
-          <div class="col-6">
-            <label class="form-label">CO:</label>
-            <%= form.text_field :co, class:"form-control" %>
-          </div>
-          <div class="col-6">
-            <label class="form-label">Mailing Address:</label>
-            <%= form.text_field :address, class:"form-control" %>
-          </div>
-          <div class="col-6">
-            <label class="form-label">Physical Address:</label>
-            <%= form.text_field :phys_address, class:"form-control" %>
-          </div>
-          <div class="col-6">
-            <br>
-            <%= submit_tag "Create Customer", class:"btn btn-primary" %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
+<h4>Create Customer</h4>
+<hr>
+Fill out the form below to create a new customer.<br><br>
+<%= form_with(model: customer) do |form| %>
+<div class="row">
+<div class="col-6">
+<label class="form-label">Customer Number:</label>
+<%= form.text_field :customer_number, class:"form-control" %>
 </div>
+<div class="col-6">
+<label class="form-label">Full Name:</label>
+<%= form.text_field :name, class:"form-control" %>
+</div>
+<div class="col-6">
+<label class="form-label">Phone Number:</label>
+<%= form.text_field :phone_number, class:"form-control" %>
+</div>
+<div class="col-6">
+<label class="form-label">CO:</label>
+<%= form.text_field :co, class:"form-control" %>
+</div>
+<div class="col-6">
+<label class="form-label">Mailing Address:</label>
+<%= form.text_field :address, class:"form-control" %>
+</div>
+<div class="col-6">
+<label class="form-label">Physical Address:</label>
+<%= form.text_field :phys_address, class:"form-control" %>
+</div>
+<div class="col-6">
+<br>
+<%= submit_tag "Create Customer", class:"btn btn-primary" %>
+</div>
+</div>
+<% end %>

@@ -1,0 +1,50 @@
+<div class="col-12">
+    <div class="row">
+    <div class="col-3 p-3">
+        <div class="card">
+        <h5 class="card-header">Total RSVPs</h5>
+        <div class="card-body">
+            <h1 id="stat_rsvp"><%= total_rsvp %></h1>
+        </div>
+        </div>
+    </div>
+    <div class="col-3 p-3">
+        <div class="card">
+        <h5 class="card-header">Total Checked-In Customers</h5>
+        <div class="card-body">
+            <h1 id="stat_checked_in"><%= total_checkins %></h1>
+        </div>
+        </div>
+    </div>
+    <div class="col-3 p-3">
+        <div class="card">
+        <h5 class="card-header">Total Walk-Ins</h5>
+        <div class="card-body">
+            <h1 id="stat_walk_ins"><%= total_walkins %></h1>
+        </div>
+        </div>
+    </div>
+    <div class="col-3 p-3">
+        <div class="card">
+        <h5 class="card-header">Checked-In Percentage</h5>
+        <div class="card-body">
+            <h1 id="stat_percentage"><%= checked_in_percentage %>%</h1>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+<br>
+<div class="clearfix">
+  <div class="row clearfix">
+    <div class="col-12">
+      <h4>Recent Check-Ins:</h4>
+      <% if total_checkins > 0 %>
+        <%= render "static_pages/recent_checkins_modal" %>
+      <% else %>
+        <h6>No customers have checked-in yet!</h5>
+      <% end %>
+    </div>
+  </div>
+</div>
+<br><br>

@@ -26,13 +26,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <%= render "customers/stats" %>
           <div class="d-flex">
-	    <span class="navbar-text px-3">Running on <%= ENV["INSTANCE"].upcase %></span>
+	    <span class="navbar-text px-3">Running on <%= Setting.instance_name.upcase %></span>
             <% if current_employee %>
               <span class="navbar-text px-3">Logged in as <%= current_employee.first_name %></span>
               <%= link_to "Lookup", root_url, class:"btn btn-primary" %>
               <span class="navbar-text px-1"></span>
               <% if current_admin %>
-                <%= link_to "Admin Dashboard", admin_url, class:"btn btn-danger" %>
+                <%= link_to "Admin", admin_url, class:"btn btn-danger" %>
                 <span class="navbar-text px-1"></span>
               <% end %>
               <%= link_to "Log Out", logout_url, class:"btn btn-primary" %>
