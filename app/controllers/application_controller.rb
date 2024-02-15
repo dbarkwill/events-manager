@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_admin
   helper_method :dinner_delta
   helper_method :checked_in_count
+  helper_method :attendee_count
   helper_method :total_checkins
   helper_method :total_walkins
   helper_method :total_rsvp
@@ -26,7 +27,11 @@ class ApplicationController < ActionController::Base
   end
 
   def dinner_delta
-    @dinner_delta = (ENV["MEALS_PURCHASED"].to_i - Customer.filter_by_rsvp(true).sum(:dinner_count).to_i) - (Customer.filter_by_checked_in(true).sum(:actual_dinner_count).to_i - Customer.filter_by_checked_in(true).sum(:dinner_count).to_i)
+    @dinner_delta = ((ENV["MEALS_PURCHASED"].to_i - Customer.filter_by_rsvp(true).sum(:dinner_count).to_i) - (Customer.filter_by_checked_in(true).sum(:actual_dinner_count).to_i - Customer.filter_by_checked_in(true).sum(:dinner_count).to_i))
+  end
+
+  def attendee_count
+    @attendee_count = Customer.filter_by_checked_in(true).sum(:attendees).to_i
   end
 
   def checked_in_count
