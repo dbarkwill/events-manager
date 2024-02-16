@@ -16,5 +16,9 @@ class StaticPagesController < ApplicationController
     @recent_checkins = Customer.filter_by_checked_in(true).order(updated_at: :desc).limit(20)
     render layout: 'dashboard'
   end
+
+  def setup
+    render layout: 'dashboard'
+  end
   
 end

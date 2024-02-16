@@ -38,6 +38,20 @@ services:
     volumes:
       - redis:/var/lib/redis/data
     restart: always
+  management:
+    image: portainer/portainer:latest
+    ports:
+      - "9000:9000"
+    command: --admin-password '$$2y$$05$$gB7cz/QL8t5k8WWG1Ilo1.67IvYg2soIqIK/0ujcYQ0zrrHwLgJAO'
+    networks:
+      - local
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer-data:/data
+networks:
+  local:
+    driver: bridge
 volumes:
   postgres:
   redis:
+  portainer-data:

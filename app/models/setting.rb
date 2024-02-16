@@ -2,7 +2,7 @@
 class Setting < RailsSettings::Base
   cache_prefix { "v1" }
 
-  field :first_lauch, type: :boolean, default: true
+  field :first_launch, type: :boolean, default: true
   field :purchased_meal_count, type: :integer, default: 0
   field :instance_name, type: :string, default: "primary"
   field :event_name, type: :string, default: "Event"

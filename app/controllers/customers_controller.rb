@@ -26,6 +26,9 @@ class CustomersController < ApplicationController
   end
 
   def lookup
+      if Setting.first_launch
+        redirect_to setup_url
+      end
       if turbo_frame_request?
         @customers = Customer.search(params[:search])
         render partial: "customers", locals: { customers: @customers }

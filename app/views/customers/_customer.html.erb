@@ -19,7 +19,7 @@
         <li class="list-group-item">
           <b>Mailing Address:</b> <%= customer.address.titleize %><br>
           <b>Physical Address:</b> <%= customer.phys_address.titleize %><br>
-          <b>Phone Number:</b> <%= customer.phone_number %><br>
+          <b>Phone Number:</b> <%= number_to_phone(customer.phone_number, area_code: true) %><br>
           <b>Account Number:</b> <%= customer.customer_number %><br>
           <b>Member Number:</b> <%= customer.member_number %><br>
           <% if customer.checked_in %>
@@ -36,6 +36,11 @@
                     <%= form.number_field :actual_dinner_count, class:"form-control", :required => true, value: customer.dinner_count %>
                     <span class="input-group-text">Meal Tickets</span>
                   </div>
+                  <br>
+                  <div class="input-group">
+                    <%= form.number_field :attendees, class:"form-control", :required => true, value: customer.dinner_count %>
+                    <span class="input-group-text">Attendees</span>
+                  </div>
                 </div>
                 <br>
                 <div class="d-grid">
@@ -47,6 +52,11 @@
                   <div class="input-group">
                     <%= form.number_field :actual_dinner_count, class:"form-control", :required => true %>
                     <span class="input-group-text">Meal Tickets</span>
+                  </div>
+                  <br>
+                  <div class="input-group">
+                    <%= form.number_field :attendees, class:"form-control", :required => true %>
+                    <span class="input-group-text">Attendees</span>
                   </div>
                 </div>
                 <br>

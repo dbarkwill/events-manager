@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'customers/export_attendance', to: 'customers#export_attendance'
   get 'admin', to: 'static_pages#admin'
   get 'dashboard', to: 'static_pages#dashboard'
+  get 'setup', to: 'static_pages#setup'
 
   resources :employees
   resources :customers do
