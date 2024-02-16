@@ -28,7 +28,35 @@ Fill out the form below to create a new customer.<br><br>
 <%= form.text_field :phys_address, class:"form-control" %>
 </div>
 <div class="col-6">
-<br>
+<label class="form-label">Employee / Director:</label>
+<%= form.select(:empdir, [['Employee','E'],['Director','D']],{}, { :class => 'form-control'}) %>
+</div>
+<div class="col-6">
+<label class="form-label">Dinner Count:</label>
+<%= form.number_field :actual_dinner_count, class:"form-control" %>
+</div>
+<div class="col-6">
+
+<%= form.check_box :registered, class:"form-check-input" %>
+<label class="form-label">Registered</label>
+</div>
+<div class="col-6">
+
+<%= form.check_box :checked_in, class:"form-check-input" %>
+<label class="form-label">Checked-In</label>
+</div>
+<div class="col-6">
+
+<%= form.check_box :registered_at_event, class:"form-check-input" %>
+<label class="form-label">Registered at Event</label>
+</div>
+<div class="col-6">
+
+<%= form.check_box :voted, class:"form-check-input" %>
+<label class="form-label">Voted</label>
+</div>
+<div class="col-6">
+
 <%= submit_tag "Create Customer", class:"btn btn-primary" %>
 </div>
 </div>

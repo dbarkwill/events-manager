@@ -15,6 +15,9 @@ Rails.application.routes.draw do
       get :rsvp
     end
   end
+  get 'reset/check_ins', to: 'actions#reset_check_ins'
+  get 'reset/registrations', to: 'actions#reset_registrations'
+  get 'reset/database', to: 'actions#reset_database'
 
   resources :sessions, only: [:new, :create, :destroy]
 

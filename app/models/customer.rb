@@ -29,7 +29,7 @@ class Customer < ApplicationRecord
 
   def is_employee
     if self[:empdir]
-      if self[:empdir].include? "X"
+      if self[:empdir].include? "E"
         return true
       else
         return false
