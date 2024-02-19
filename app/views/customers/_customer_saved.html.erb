@@ -1,0 +1,17 @@
+<%= turbo_frame_tag "customers" do %>
+  <div class="clearfix">
+	<br><br>
+    <div class="row g-5 clearfix">
+      <% if @customers %>
+        <%= render customers %>
+      <% end %>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <script>
+    document.getElementById("search").value = '';
+    document.getElementById("search").select();
+  </script>
+<% end %>

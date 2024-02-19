@@ -84,7 +84,7 @@ class CustomersController < ApplicationController
     if turbo_frame_request?
       if @customer.update(customer_params)
         @customers = @customer
-        render partial: "customers", locals: { customers: @customers }
+        render partial: "customer_saved", locals: { customers: @customers }
       end
     else
       respond_to do |format|
