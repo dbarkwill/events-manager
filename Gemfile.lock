@@ -173,6 +173,9 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.4.2)
       loofah (~> 2.3)
+    rails-settings-cached (2.9.4)
+      activerecord (>= 5.0.0)
+      railties (>= 5.0.0)
     railties (7.0.1)
       actionpack (= 7.0.1)
       activesupport (= 7.0.1)
@@ -252,6 +255,7 @@ DEPENDENCIES
   jquery-rails
   pg
   rails (~> 7.0.1)
+  rails-settings-cached
   redis (~> 4.0)
   selenium-webdriver
   sprockets-rails

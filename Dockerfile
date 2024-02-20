@@ -21,6 +21,7 @@ RUN gem install rails bundler
 RUN bundle install
 RUN yarn install
 #RUN chown -R user:user /opt/app
-
+COPY entrypoint.sh /
+RUN chmod +x ./entrypoint.sh
 #USER $USER_ID
-CMD bundle exec unicorn -c config/unicorn.rb
+ENTRYPOINT ["/bin/sh","/entrypoint.sh"]

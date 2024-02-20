@@ -25,7 +25,14 @@ class CustomersController < ApplicationController
     @customers = Customer.filter_by_rsvp(true).filter_by_checked_in(nil)
   end
 
+  def checked_in
+    @customers = Customer.filter_by_checked_in(true)
+  end
+
   def lookup
+      if Setting.first_launch
+        redirect_to setup_url
+      end
       if turbo_frame_request?
         @customers = Customer.search(params[:search])
         render partial: "customers", locals: { customers: @customers }
@@ -67,7 +74,7 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to customer_url(@customer), notice: "Customer was successfully created." }
+        format.html { redirect_to admin_url, notice: "Customer was successfully created." }
         format.json { render :show, status: :created, location: @customer }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -81,7 +88,7 @@ class CustomersController < ApplicationController
     if turbo_frame_request?
       if @customer.update(customer_params)
         @customers = @customer
-        render partial: "customers", locals: { customers: @customers }
+        render partial: "customer_saved", locals: { customers: @customers }
       end
     else
       respond_to do |format|

@@ -1,10 +1,18 @@
-<h1>Edit Customer</h1>
-<br>
+<div class="row justify-content-center">
+  <div class="col-9">
 
+    <h1>Edit Customer</h1>
+    <br>
+  </div>
+</div>
 <%= render "form", customer: @customer %>
 
 <br>
-<div>
-  <%= link_to "Cancel Editing", @customer, class:"btn btn-secondary" %>
-  <%= link_to "View All Customers", customers_path, class:"btn btn-secondary" %>
+<div class="row justify-content-center">
+  <div class="col-9">
+    <div>
+      <%= link_to "Cancel Editing", @customer, class:"btn btn-secondary" %>
+      <%= link_to "View All Customers", customers_path, class:"btn btn-secondary" %>
+    </div>
+  </div>
 </div>

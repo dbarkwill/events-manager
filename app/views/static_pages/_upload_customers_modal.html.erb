@@ -1,17 +1,26 @@
-<div class="accordion-item">
-  <h2 class="accordion-header" id="headingIC">
-    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIC" aria-expanded="false" aria-controls="collapseIC">
-      Import Customers
-    </button>
-  </h2>
-  <div id="collapseIC" class="accordion-collapse collapse" aria-labelledby="headingIC" data-bs-parent="#accordion">
-    <div class="accordion-body">
-      Import the list of customers below. The import file should be a CSV. The following fields are allowed: <code>customer_number</code>, <code>name</code>, <code>address</code>, <code>phys_address</code>, <code>phone_number</code>, <code>co</code>, <code>empdir</code>, <code>member_number</code>. The CSV should be a standard comma delimated file including a header. <br><br>
-      <%= form_tag import_customers_path, multipart:true do %>
-        <%= file_field_tag :file, class:"form-control" %>
-        <br>
-        <%= submit_tag "Import CSV", class:"btn btn-primary" %>
-      <% end %>
-    </div>
-  </div>
-</div>
+<h4>Import Customers</h4>
+<hr>
+<p>Import the list of customers below. The import file should be a CSV. The CSV should be a standard comma delimated file including a header. Below are the allowed fields and their descriptions:</p>
+<dl class="row">
+  <dt class="col-sm-3"><code>customer_number</code></dt>
+  <dd class="col-sm-9">Must be unique. Maps to the Account number and is the same field typically used for the star code. Cannot be blank.</dt>
+  <dt class="col-sm-3"><code>name</code></dt>
+  <dd class="col-sm-9">The customer's full name. Cannot be blank.</dt>
+  <dt class="col-sm-3"><code>address</code></dt>
+  <dd class="col-sm-9">The customer's mailing address. Typically maps to the Address 1 field in the customer excel document.</dt>
+  <dt class="col-sm-3"><code>phys_address</code></dt>
+  <dd class="col-sm-9">The customer's physical, or service, address.</dt>
+  <dt class="col-sm-3"><code>phone_number</code></dt>
+  <dd class="col-sm-9">The customer's phone number. The system will automatically format the phone number, no need to add brackets or hyphens.</dt>
+  <dt class="col-sm-3"><code>co</code></dt>
+  <dd class="col-sm-9">The CO that services the customer. Not required.</dt>
+  <dt class="col-sm-3"><code>empdir</code></dt>
+  <dd class="col-sm-9">Indicates whether the customer is also an employee or director. Can only specify one or the other. For an employee, indicate with an "E" in the field and for a director, use a "D" (no quotes).</dt>
+  <dt class="col-sm-3"><code>member_number</code></dt>
+  <dd class="col-sm-9">The member number for the customer, helpful for the service desk to find the customer. Not required.</dt>
+</dl>
+<%= form_tag import_customers_path, multipart:true do %>
+  <%= file_field_tag :file, class:"form-control" %>
+  <br>
+  <%= submit_tag "Import CSV", class:"btn btn-primary" %>
+<% end %>

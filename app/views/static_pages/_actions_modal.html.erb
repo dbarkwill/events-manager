@@ -1,0 +1,68 @@
+<h4>Actions</h4>
+<hr>
+<p>The below actions are NOT REVERSIBLE. Please exercise extreme caution when performing the actions below. No backups exist for the data and data during the event cannot be recovered.</p>
+<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmResetCheckIns">
+    Reset Check-Ins
+</button>
+<br>
+<br>
+<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmResetRegistrations">
+    Reset Registrations
+</button>
+<br>
+<br>
+<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmResetDatabase">
+    Reset Customer Database
+</button>
+
+<div class="modal fade" id="confirmResetCheckIns" tabindex="-1" aria-labelledby="confirmResetCheckIns" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="confirmResetCheckIns">Danger!</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        This action will reset all current check-ins. Are you sure you want to continue?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <%= link_to "Yes", reset_check_ins_path, class:"btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="confirmResetRegistrations" tabindex="-1" aria-labelledby="confirmResetRegistrations" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="confirmResetCheckIns">Danger!</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        This action will reset all registrations. Are you sure you want to continue?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <%= link_to "Yes", reset_registrations_path, class:"btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="confirmResetDatabase" tabindex="-1" aria-labelledby="confirmResetDatabase" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="confirmResetDatabase">Danger!</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        This action will reset the customer database. All customers will be removed. Are you sure you want to continue?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <%= link_to "Yes", reset_database_path, class:"btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>

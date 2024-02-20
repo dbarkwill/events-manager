@@ -1,0 +1,18 @@
+<h4>Settings</h4>
+<hr>
+<%= form_for(Setting.new, url: settings_path) do |f| %>
+    <label for="event_name" class="form-label">Event Name</label>
+    <%= f.text_field :event_name, value: Setting.event_name, class:"form-control" %>
+    <br>
+    <label for="purchased_meal_count" class="form-label">Purchased Meal Count</label>
+    <%= f.number_field :purchased_meal_count, value: Setting.purchased_meal_count, class:"form-control" %>
+    <br>
+    <label for="instance_name" class="form-label">Instance Name</label>
+    <%= f.text_field :instance_name, value: Setting.instance_name, class:"form-control" %>
+    <br>
+    <%= f.check_box :delete_enabled, class:"form-check-input" %>
+    <label for="delete_enabled" class="form-label">Enable Deletion of Customers</label>
+    <br>
+    <br>
+    <%= f.submit "Save", class:"btn btn-primary" %>
+<% end %>

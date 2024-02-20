@@ -1,0 +1,8 @@
+<h4>Helpful Links</h4>
+<hr>
+<p>Below are a few helpful links to help monitor activity during the event. These links will open in new tabs.</p>
+<%= link_to "Live Dashboard", dashboard_path, class:"nav-link", target: :_blank %>
+<%= link_to "Customer Preview", customers_path, class:"nav-link", target: :_blank %>
+<%= link_to "RSVP'ed Customers", rsvp_customers_path, class:"nav-link", target: :_blank %>
+<%= link_to "Checked-In Customers", checked_in_customers_path, class:"nav-link", target: :_blank %>
+<%= link_to "Portainer Dashboard", "http://#{request.host}:9000", class:"nav-link", target: :_blank %>

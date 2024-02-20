@@ -84,3 +84,6 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+# Settings
+gem 'rails-settings-cached'

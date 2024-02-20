@@ -1,0 +1,26 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <h1 class="display-6 text-center"></h1>
+  </div>
+</div>
+<br>
+<div class="clearfix">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-8">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">First Launch</h5><br>
+          <p class="card-text">This appears to be the first time that this application has been started. To login, click the login button in the lower right-hand corner. The default PIN code is 313131. After you are logged in, you can click the Admin button in the lower left-hand corner to change the settings for the event. In the admin panel, you can also upload the list of customers and registrations.</p>
+          <p class="card-text">Additionally, as part of the image for this web application, a Portainer instance has been setup to help manage the containers. The username is <code>admin</code> and the password is <code><%= ENV["PORTAINER_PW"] %></code>. You can access the management interface by clicking <%= link_to "here", "http://#{request.host}:9000", target: :_blank %>.</p>
+          <p class="card-text">Clicking Continue below will clear this message, so please note the PIN before doing so. The Portainer credentials are stored in LastPass.</p>
+        </div>
+        <div class="card-footer">
+            <%= form_for(Setting.new, url: settings_path) do |f| %>
+                <%= f.hidden_field :first_launch, value: false %>
+                <%= f.submit "Continue", class:"btn btn-danger float-end" %>
+            <% end %>
+        </div>
+      </div>
+    </div
+  </div>
+</div>

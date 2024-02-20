@@ -1,78 +1,73 @@
-<h1 class="display-4">Admin Dashboard</h1>
-<br>
-<div class="row">
-  <div class="col-6">
-    <div class="row">
-      <div class="col-12">
-        <div class="accordion" id="accordion">
-          <%= render "static_pages/upload_customers_modal" %>
-          <%= render "static_pages/upload_registrations_modal" %>
-          <%= render "static_pages/export_attendance_modal" %>
-          <%= render "static_pages/new_customer_modal", customer: @customer %>
-          <%= render "static_pages/new_employee_modal", employee: @employee %>
-          <%= render "static_pages/view_employees_modal" %>
-        </div>
+<div class="row justify-content-center">
+  <div class="col-9">
+    <h1 class="display-6">Admin Dashboard</h1>
+      <% if notice %>
+      <br>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= notice %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
-    </div>
-  </div>
-  <div class="col-6">
-    <% if notice %>
-      <div class="row">
-        <div class="col-12">
-          <div class="alert alert-success alert-dismissible" role="alert">
-            <%= notice %>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        </div>
-      </div>
-    <% end %>
-    <div class="row">
-      <div class="col-6 p-3">
-        <div class="card">
-          <h5 class="card-header">Total RSVPs</h5>
-          <div class="card-body">
-            <h1 id="stat_rsvp"><%= total_rsvp %></h1>
-          </div>
-        </div>
-      </div>
-      <div class="col-6 p-3">
-        <div class="card">
-          <h5 class="card-header">Total Checked-In Customers</h5>
-          <div class="card-body">
-            <h1 id="stat_checked_in"><%= total_checkins %></h1>
-          </div>
-        </div>
-      </div>
-      <div class="col-6 p-3">
-        <div class="card">
-          <h5 class="card-header">Total Walk-Ins</h5>
-          <div class="card-body">
-            <h1 id="stat_walk_ins"><%= total_walkins %></h1>
-          </div>
-        </div>
-      </div>
-      <div class="col-6 p-3">
-        <div class="card">
-          <h5 class="card-header">Checked-In Percentage</h5>
-          <div class="card-body">
-            <h1 id="stat_percentage"><%= checked_in_percentage %>%</h1>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<br>
-<div class="clearfix">
-  <div class="row clearfix">
-    <div class="col-12">
-      <h4>Recent Check-Ins:</h4>
-      <% if total_checkins > 0 %>
-        <%= render "static_pages/recent_checkins_modal" %>
-      <% else %>
-        <h6>No customers have checked-in yet!</h5>
       <% end %>
+      <% if flash[:error] %>
+      <br>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%= flash[:error] %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <% end %>
+    <br>
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex align-items-start">
+          <ul class="nav flex-column col-3 nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <li class="nav-item">
+              <a href="#" class="nav-link active" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controlls="v-pills-settings" aria-selected="true">Settings</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" id="v-pills-import-customers-tab" data-bs-toggle="pill" data-bs-target="#v-pills-import-customers" type="button" role="tab" aria-controlls="v-pills-import-customers" aria-selected="false">Import Customers</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" id="v-pills-upload-registrations-tab" data-bs-toggle="pill" data-bs-target="#v-pills-upload-registrations" type="button" role="tab" aria-controlls="v-pills-upload-registrations" aria-selected="false">Upload Registrations</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" id="v-pills-export-attendance-tab" data-bs-toggle="pill" data-bs-target="#v-pills-export-attendance" type="button" role="tab" aria-controlls="v-pills-export-attendance" aria-selected="false">Export Attendance</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" id="v-pills-new-customer-tab" data-bs-toggle="pill" data-bs-target="#v-pills-new-customer" type="button" role="tab" aria-controlls="v-pills-new-customer" aria-selected="false">Create Customer</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" id="v-pills-view-employees-tab" data-bs-toggle="pill" data-bs-target="#v-pills-view-employees" type="button" role="tab" aria-controlls="v-pills-view-employees" aria-selected="false">View Employees</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" id="v-pills-create-employee-tab" data-bs-toggle="pill" data-bs-target="#v-pills-create-employee" type="button" role="tab" aria-controlls="v-pills-create-employee" aria-selected="false">Create Employee</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" id="v-pills-actions-tab" data-bs-toggle="pill" data-bs-target="#v-pills-actions" type="button" role="tab" aria-controlls="v-pills-actions" aria-selected="false">Actions</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" id="v-pills-actions-tab" data-bs-toggle="pill" data-bs-target="#v-pills-helpful-links" type="button" role="tab" aria-controlls="v-pills-helpful-links" aria-selected="false">Helpful Links</a>
+            </li>
+          </ul>
+          <div class="col-1">
+          </div>
+          <div class="col-8">
+            <div class="tab-content" id="v-pills-tabContent">
+              <div class="tab-pane show active" id="v-pills-settings" role="tabpanel" aria-labeledby="v-pills-settings-tab" tabindex="0"><%= render "static_pages/settings_modal" %></div>
+              <div class="tab-pane" id="v-pills-import-customers" role="tabpanel" aria-labeledby="v-pills-import-customers-tab" tabindex="0"><%= render "static_pages/upload_customers_modal" %></div>
+              <div class="tab-pane" id="v-pills-upload-registrations" role="tabpanel" aria-labeledby="v-pills-upload-registrations-tab" tabindex="0"><%= render "static_pages/upload_registrations_modal" %></div>
+              <div class="tab-pane" id="v-pills-export-attendance" role="tabpanel" aria-labeledby="v-pills-export-attendance-tab" tabindex="0"><%= render "static_pages/export_attendance_modal" %></div>
+              <div class="tab-pane" id="v-pills-new-customer" role="tabpanel" aria-labeledby="v-pills-new-customer-tab" tabindex="0"><%= render "static_pages/new_customer_modal", customer: @customer %></div>
+              <div class="tab-pane" id="v-pills-view-employees" role="tabpanel" aria-labeledby="v-pills-view-employees-tab" tabindex="0"><%= render "static_pages/view_employees_modal" %></div>
+              <div class="tab-pane" id="v-pills-create-employee" role="tabpanel" aria-labeledby="v-pills-create-employee-tab" tabindex="0"><%= render "static_pages/new_employee_modal", employee: @employee %></div>
+              <div class="tab-pane" id="v-pills-actions" role="tabpanel" aria-labeledby="v-pills-actions-tab" tabindex="0"><%= render "static_pages/actions_modal" %></div>
+              <div class="tab-pane" id="v-pills-helpful-links" role="tabpanel" aria-labeledby="v-pills-helpful-links-tab" tabindex="0"><%= render "static_pages/helpful_links_modal" %></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-<br><br>
+<br>
+<br>
+<br>

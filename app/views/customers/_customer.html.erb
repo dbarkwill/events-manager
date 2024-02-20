@@ -19,7 +19,7 @@
         <li class="list-group-item">
           <b>Mailing Address:</b> <%= customer.address.titleize %><br>
           <b>Physical Address:</b> <%= customer.phys_address.titleize %><br>
-          <b>Phone Number:</b> <%= customer.phone_number %><br>
+          <b>Phone Number:</b> <%= number_to_phone(customer.phone_number, area_code: true) %><br>
           <b>Account Number:</b> <%= customer.customer_number %><br>
           <b>Member Number:</b> <%= customer.member_number %><br>
           <% if customer.checked_in %>
@@ -32,9 +32,14 @@
               <%= form.hidden_field :checked_in, value: 1 %>
               <% if customer.registered %>
                 <div class="form-group">
-		  <div class="input-group">
+		              <div class="input-group">
                     <%= form.number_field :actual_dinner_count, class:"form-control", :required => true, value: customer.dinner_count %>
-                    <span class="input-group-text">Dinner(s) Needed</span>
+                    <span class="input-group-text">Meal Tickets</span>
+                  </div>
+                  <br>
+                  <div class="input-group">
+                    <%= form.number_field :attendees, class:"form-control", :required => true, value: customer.dinner_count %>
+                    <span class="input-group-text">Attendees</span>
                   </div>
                 </div>
                 <br>
@@ -45,12 +50,10 @@
                 <%= form.hidden_field :registered_at_event, value: 1 %>
                 <div class="form-group">
                   <div class="input-group">
-                    <%= form.number_field :actual_dinner_count, class:"form-control", :required => true, max: 4 %>
+                    <%= form.number_field :actual_dinner_count, class:"form-control", :required => true %>
                     <span class="input-group-text">Meal Tickets</span>
                   </div>
-                </div>
-                <br>
-                <div class="form-group">
+                  <br>
                   <div class="input-group">
                     <%= form.number_field :attendees, class:"form-control", :required => true %>
                     <span class="input-group-text">Attendees</span>

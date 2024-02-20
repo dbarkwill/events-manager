@@ -1,17 +1,18 @@
-<div class="accordion-item">
-  <h2 class="accordion-header" id="headingIR">
-    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIR" aria-expanded="false" aria-controls="collapseIR">
-      Import Registrations
-    </button>
-  </h2>
-  <div id="collapseIR" class="accordion-collapse collapse" aria-labelledby="headingIR" data-bs-parent="#accordion">
-    <div class="accordion-body">
-      Import the registrations below. The import file should be a CSV. The following fields are allowed: <code>customer_number</code>, <code>dinner_count</code>, <code>registered</code>, <code>voted</code>. The CSV should be a standard comma delimated file including a header. The <code>customer_number</code> is manditory and should be present for each row. <br><br>
-      <%= form_tag import_reg_customers_path, multipart:true do %>
-        <%= file_field_tag :file, class:"form-control" %>
-        <br>
-        <%= submit_tag "Import CSV", class:"btn btn-primary" %>
-      <% end %>
-    </div>
-  </div>
-</div>
+<h4>Upload Registrations</h4>
+<hr>
+<p>Import the registrations below. The import file should be a CSV. The CSV should be a standard comma delimated file including a header. The below fields are allowed:</p>
+<dl class="row">
+  <dt class="col-sm-3"><code>customer_number</code></dt>
+  <dd class="col-sm-9">Links to the customer and is typically referred to as the Account number. This is also the field used for the star codes. This is required.</dd>
+  <dt class="col-sm-3"><code>dinner_count</code></dt>
+  <dd class="col-sm-9">The number of meal tickets the customer registered for. Does not need to be filled in, but does need to be a number if it is.</dd>
+  <dt class="col-sm-3"><code>registered</code></dt>
+  <dd class="col-sm-9">Boolean field indicating whether or not the customer registered to come to the Annual Meeting.</dd>
+  <dt class="col-sm-3"><code>voted</code></dt>
+  <dd class="col-sm-9">Boolean field indicating whether or not the customer voted on the online registration portal.</dd>
+</dl>
+<%= form_tag import_reg_customers_path, multipart:true do %>
+  <%= file_field_tag :file, class:"form-control" %>
+  <br>
+  <%= submit_tag "Import CSV", class:"btn btn-primary" %>
+<% end %>
