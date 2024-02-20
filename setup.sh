@@ -2,7 +2,7 @@
 
 generate_hashed_password() {
     local password="$1"
-    docker run --rm httpd htpasswd -bnB "admin" "$port_pass" |  sed "s/[$]/\$\$/g" | cut -d ":" -f 2
+    docker run --rm httpd htpasswd -bnB "" "$password" | sed 's/\$/\$\$/g' | cut -d ":" -f 2
 }
 
 generate_secret() {
