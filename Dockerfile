@@ -24,4 +24,4 @@ RUN yarn install
 COPY entrypoint.sh /
 RUN chmod +x ./entrypoint.sh
 #USER $USER_ID
-ENTRYPOINT ["/bin/sh","/entrypoint.sh"]
+CMD ["/bin/sh","/entrypoint.sh"]
