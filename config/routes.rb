@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       post :import
       post :import_reg
       get :rsvp
+      get :checked_in
     end
   end
   get 'reset/check_ins', to: 'actions#reset_check_ins'

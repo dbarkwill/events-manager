@@ -18,6 +18,6 @@ class SettingsController < ApplicationController
     
     private
         def setting_params
-            params.require(:setting).permit(:purchased_meal_count,:instance_name,:event_name, :first_launch)
+            params.require(:setting).permit(:purchased_meal_count,:instance_name,:event_name, :first_launch, :delete_enabled)
         end
 end

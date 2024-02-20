@@ -6,6 +6,7 @@ class Setting < RailsSettings::Base
   field :purchased_meal_count, type: :integer, default: 0
   field :instance_name, type: :string, default: "primary"
   field :event_name, type: :string, default: "Event"
+  field :delete_enabled, type: :boolean, default: false
 
   # Define your fields
   # field :host, type: :string, default: "http://localhost:3000"

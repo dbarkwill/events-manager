@@ -4,7 +4,7 @@ services:
     image: postgres:14.2
     environment:
       POSTGRES_USER: event_manager
-      POSTGRES_PASSWORD: test_db_password
+      POSTGRES_PASSWORD: ${DATABASE_PW}
     volumes:
       - postgres:/var/lib/postgresql/data
     restart: always
@@ -42,7 +42,7 @@ services:
     image: portainer/portainer:latest
     ports:
       - "9000:9000"
-    command: --admin-password '$$2y$$05$$gB7cz/QL8t5k8WWG1Ilo1.67IvYg2soIqIK/0ujcYQ0zrrHwLgJAO'
+    command: --admin-password ${PORTAINER_PW_HASH}
     networks:
       - local
     volumes:

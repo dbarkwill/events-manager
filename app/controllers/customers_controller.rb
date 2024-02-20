@@ -25,6 +25,10 @@ class CustomersController < ApplicationController
     @customers = Customer.filter_by_rsvp(true).filter_by_checked_in(nil)
   end
 
+  def checked_in
+    @customers = Customer.filter_by_checked_in(true)
+  end
+
   def lookup
       if Setting.first_launch
         redirect_to setup_url
