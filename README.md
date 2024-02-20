@@ -10,7 +10,13 @@ This application consists of several containers that are linked together in a Co
 - **Proxy** - This container utilizes nginx to allow clients to communicate with the web front end. 
 - **Redis** - This container provides caching capabilities to the application.
 - **Management** - This container is to provide web-based management capabilities to be able to restart containers and look at their logs.
-
+## Versions
+- **Postgres** - Version 14.2
+- **Portainer** - Latest
+- **NGINX** - Version 1.21.6
+- **Redis** - Version 6.2.6
+- **Ruby** - Version 3.1.0
+- **Rails** - Version 7.0.1
 ## Getting Started
 Before you get started, make sure you have a functioning Docker setup on your host server. Additionally, it is helpful to have Git installed to be able to clone the repository to the server.
 
