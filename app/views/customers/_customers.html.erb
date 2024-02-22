@@ -10,4 +10,14 @@
   <br>
   <br>
   <br>
+  <script>
+
+    function f(event){
+      var dc = event.currentTarget;
+      var parent = dc.closest(".trackables");
+      var att = parent.querySelector('.attendees');
+      att.value = dc.value;
+    }
+    document.querySelectorAll("[id^='customer_actual_dinner_count']").forEach(el => el.addEventListener('change', f));
+  </script>
 <% end %>
