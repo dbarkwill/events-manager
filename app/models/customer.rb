@@ -50,4 +50,16 @@ class Customer < ApplicationRecord
       return false
     end
   end
+
+  def is_vip
+    if self[:empdir]
+      if self[:empdir].include? "V"
+        return true
+      else
+        return false
+      end
+    else
+      return false
+    end
+  end
 end

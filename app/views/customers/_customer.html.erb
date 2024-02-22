@@ -1,6 +1,6 @@
 <div class="col-4 gy-2" id="<%= dom_id customer %>">
   <div class="card">
-    <h5 class="card-header"><%= customer.name.titleize %><% if customer.is_employee %> - Employee<% end %><% if customer.is_director %> - Director<% end %>
+    <h5 class="card-header"><%= customer.name.titleize %><% if customer.is_employee %> - Employee<% end %><% if customer.is_director %> - Director<% end %><% if customer.is_vip %> - VIP<% end %>
       <% if current_admin %>
         <%= link_to edit_customer_path(customer), data: { turbo: false } do %>
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square float-end" viewBox="0 0 16 16">
